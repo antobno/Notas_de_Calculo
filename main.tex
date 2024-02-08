@@ -1,0 +1,614 @@
+\documentclass[a4paper, fleqn]{book}
+\usepackage[spanish,es-noshorthands,es-tabla,es-lcroman]{babel}
+
+\usepackage{fix-cm}
+\usepackage[
+  compact,
+  newparttoc,
+  newlinetospace,
+]{titlesec}
+\usepackage{titletoc}
+\usepackage[strict]{changepage}
+
+\usepackage{lipsum}% for dummy text
+\usepackage[default]{lato}
+\renewcommand{\mddefault}{l}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{bm}
+%\usepackage{icomma} % Paquete para escribir correctamente el espacio seguido de la coma (en modo matemático)
+
+% A mi parecer, es mejor estéticamente utilizar lo siguiente:
+\AtBeginDocument{%
+  \mathchardef\stdcomma=\mathcode`,
+  \mathcode`,="8000
+}
+\begingroup\lccode`~=`, \lowercase{\endgroup\def~}{\stdcomma\,}
+
+
+\usepackage{thmtools}
+\usepackage{mathtools}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{calc}
+\usepackage{caption}
+\usepackage{changepage}
+\usepackage[inline]{enumitem}
+\usepackage{tasks}
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
+\usepackage{floatrow}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{marginfix}
+\usepackage{marginnote}
+\usepackage{mdframed}
+\usepackage{microtype}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{cancel}
+\usepackage{verbatim}
+
+\usepackage[makeindex]{imakeidx} % Requerido para hacer un índice
+
+\makeindex[options=-s MyStyle.ist] % Le dice a LaTeX que cree los archivos necesarios para la 'indexación'.
+
+\usepackage{hyperref}
+
+\usepackage{geometry} % In some weird cases, geometry might need to be loaded after hyperref
+\usepackage{qrcode}
+\usepackage{ccicons}
+
+
+\usepackage{tikz}
+
+\usetikzlibrary{shapes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{calendar}
+\usetikzlibrary{mindmap}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{matrix}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{fit}
+\usetikzlibrary{3d}
+\usetikzlibrary{patterns,angles,quotes}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{pgfplots.fillbetween}
+
+
+\geometry{
+    %showframe,
+	a4paper,
+    asymmetric,
+	ignorefoot,
+	ignorehead,
+	right=7.7cm,
+	left=2cm,
+	top=2.5cm,
+	bottom=2.5cm,
+	footskip=2\baselineskip,
+	footnotesep=0mm,
+	marginparwidth=5cm,
+	marginparsep=7mm,
+	headheight=0mm,
+}
+%\reversemarginpar
+
+\setlength{\parskip}{0.8\baselineskip}
+%\setlength{\parindent}{0ex}
+\setlength{\headheight}{12.0pt}
+
+% Saving some length as commands
+\newlength{\wholeMargin}
+\setlength{\wholeMargin}{\marginparwidth}
+\addtolength{\wholeMargin}{\marginparsep}
+
+\newlength{\wholeWidth}
+\setlength{\wholeWidth}{\textwidth}
+\addtolength{\wholeWidth}{\wholeMargin}
+
+\newcommand{\symmetricalPage}{
+	\fancyhfoffset[L]{0mm}
+	\newgeometry{
+		ignorefoot,
+		ignorehead,
+		left=3cm,
+		right=3cm,
+		top=3cm,
+		bottom=3cm,
+		marginparwidth=0cm,
+		marginparsep=0mm
+	}
+}
+\newcommand{\asymmetricalPage}{
+	\restoregeometry
+}
+
+%%%%%%
+
+\urlstyle{rm}
+\hypersetup{
+	pdfborder={1 1 0},
+	pdfcreator=LaTeX,
+	colorlinks=true,
+	linkcolor=black,
+	linktoc=all,
+	urlcolor=black,
+	citecolor=black,
+	filecolor=black,
+}
+
+\fancypagestyle{fancy}{
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhf{}
+	\fancyhfoffset[RO]{\marginparsep + \marginparwidth}
+    %\fancyhfoffset[LE]{- 0.05\marginparsep}
+    \rhead[{\footnotesize\bfseries\protect\hyperref[toc-contents]{\thepage}\hspace{-1.13\marginparwidth}}]{\rightmark}
+    \lhead[\leftmark]{{\footnotesize\bfseries\protect\hyperref[toc-contents]{\thepage}}}
+}
+\pagestyle{fancy}
+
+\makeatletter
+\def\chaptermark#1{\markboth{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{\chaptertitlename~\thechapter} ~#1}\protect\hyper@linkend}{}}
+\def\sectionmark#1{\markright{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{\thesection} ~#1}\protect\hyper@linkend}}
+\makeatother
+
+\fancypagestyle{plain}{ % Estilo para cuando se especifica un estilo de página simple
+	\fancyhead{} % Borrar encabezados
+	\renewcommand{\headrulewidth}{0pt} % Eliminar línea de encabezado
+}
+
+\usepackage{emptypage} % Este paquete elimina encabezados y pies de página en páginas vacías entre capítulos. Importante para prólogos, introducción, etc.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Titling
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\subtitleRubberWidth}\setlength{\subtitleRubberWidth}{2cm}
+\newlength{\subtitleDefaultPadding}\setlength{\subtitleDefaultPadding}{2mm}
+\newlength{\subtitleRubberHeight}\setlength{\subtitleRubberHeight}{4.5cm}
+\titleformat{\chapter}[block]
+{} % format
+{%
+	\begin{tikzpicture}%
+		\node [font=\fontsize{1cm}{1.2cm}\selectfont\bfseries] (chapterLabel) {\hspace{-.3ex}\chaptername};
+		\draw [xshift=-2mm, black, ultra thick] (chapterLabel.south west) -- (chapterLabel.south east);
+	\end{tikzpicture}
+	\begin{tikzpicture}[remember picture, overlay, inner sep=0mm]
+%		Coordinates
+		\coordinate[xshift=-1in-\evensidemargin-\subtitleRubberWidth] (rubberNorthWest) at (current page.north east);
+		\coordinate[xshift=\subtitleRubberWidth, yshift=-\subtitleRubberHeight] (rubberSouthEast) at (rubberNorthWest);
+		\coordinate[yshift=-\subtitleRubberHeight] (rubberSouthWest) at (rubberNorthWest);
+		\coordinate[xshift=\subtitleDefaultPadding, yshift=-1in-\voffset-\topmargin-\headheight-\headsep] (rubberTextNorthWest) at (rubberNorthWest);
+%		Drawing the rubber
+		\fill[black] (rubberNorthWest) rectangle (rubberSouthEast) -- +(-\subtitleRubberWidth/2, -8mm) -- (rubberSouthWest) -- cycle;
+		\draw[white] (rubberSouthWest)[xshift=\subtitleRubberWidth/2] node [
+			anchor=south,
+			align=center,
+			text width=\subtitleRubberWidth-2\subtitleDefaultPadding
+		] {
+			%\chapterNumberFont
+            \fontsize{2cm}{2.4cm}\selectfont
+			\color{White}
+			\thechapter\startcontents
+		};
+	\end{tikzpicture}%
+}
+{0pt} % sep
+{% code before
+	\blockmargin%
+	\begin{adjustwidth}{0mm}{-\wholeMargin}
+		\FlushLeft
+		\begingroup
+		%\chapterFont
+        \fontsize{1.5cm}{1.8cm}\selectfont\raggedright\bfseries%
+		\noHyphen%
+}[ % code after
+		\endgroup
+	\end{adjustwidth}
+	\unblockmargin%
+]
+
+\titleformat{name=\chapter, numberless}[block]
+{} % format
+{}
+{0pt} % sep
+{ % code before
+	\begin{adjustwidth}{0mm}{-\wholeMargin}
+		\FlushLeft
+		\begingroup
+		%\chapterFont
+        \fontsize{1.5cm}{1.8cm}\selectfont\raggedright\bfseries%
+		\noHyphen%
+	}[ % code after
+	\endgroup
+\end{adjustwidth}
+]
+
+\titlespacing*% the star makes the first paragraph after the title unindented
+    {\chapter}% command to format
+    {0pt}% spacing on left
+    {0.1\textheight}% spacing before title
+    {4ex}% spacing after the title
+    [0pt]% extra margin on the right
+
+%-----------------------------------------------------------------------------
+%   TABLA DE CONTENIDOS
+%-----------------------------------------------------------------------------
+
+\contentsmargin{0cm}
+
+% Estilo de texto de parte
+\titlecontents{part}[0cm]
+{\addvspace{20pt}\centering\large\bfseries\color{white}}
+{}
+{}
+{}
+
+% Estilo de texto de capítulo
+\titlecontents{chapter}[1.4cm] % Sangría
+{\addvspace{12pt}\large\bfseries} % Opciones de espaciado y fuente para los capítulos
+{\contentslabel[\Large\thecontentslabel]{1cm}} % Número de capítulo
+{}
+{\normalsize\;\titlerule*[.8pc]{.}\;\thecontentspage} % Número de página
+
+% Estilo de texto de sección 
+\titlecontents{section}[2.4cm] % Sangría
+{\addvspace{3pt}} % Opciones de espaciado y fuente para las secciones
+{\contentslabel[\thecontentslabel]{1cm}} % Número de sección
+{}
+{\normalsize\;\titlerule*[.8pc]{.}\;\thecontentspage} % Número de página
+[]
+
+% Estilo de texto de subsección 
+\titlecontents{subsection}[3.4cm] % Sangría
+{\addvspace{2pt}\small} % Opciones de espaciado y fuente para las secciones
+{\contentslabel[\thecontentslabel]{1cm}} % Número de subsección
+{}
+{\ \titlerule*[.8pc]{.}\;\thecontentspage} % Número de página
+[]
+
+\pgfkeys{
+	/yMarginDesign/.cd,
+	alignment/.code = \RaggedRight,
+	emph color/.initial = black,
+	text color/.initial = black,
+	size/.code = \footnotesize,
+	titleFormat/.code = \bfseries\scshape,
+	marginparskip/.initial = 3mm,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Margin Paragraphs
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+% Typeset a paragraph in the margin
+\DeclareDocumentCommand{\marginElement}{m}{%
+	\marginpar{{%
+			\pgfkeys{/yMarginDesign/alignment}%
+			\pgfkeys{/yMarginDesign/size}%
+			\color{\pgfkeysvalueof{/yMarginDesign/text color}}
+      \setlist{
+        noitemsep,
+        left=0mm,
+      }%
+      #1\par\vspace*{\baselineskip}%
+	}}\unskip%
+}%
+
+\newcounter{marginnote}
+
+% Typeset a paragraph in the margin with a number (as a footnote) 
+\DeclareDocumentCommand{\marginNote}{m}{%
+  \stepcounter{marginnote}%
+  \hyper@anchor{from-\theHmarginnote}%
+  {%
+    \bfseries%
+    \hyper@link{}{to-\theHmarginnote}{\textsuperscript{\textcolor{\pgfkeysvalueof{/yMarginDesign/emph color}}{\themarginnote}}}%
+  }%
+	\marginElement{%
+	  \hyper@anchor{to-\theHmarginnote}%
+	  {%
+	    \bfseries%
+      \hyper@link{}{from-\theHmarginnote}{\textcolor{\pgfkeysvalueof{/yMarginDesign/emph color}}{\themarginnote.}}~%
+	  }%
+	  \ignorespaces%
+		#1%
+	}%
+}%
+
+% Typeset a paragraph in the margin exactly at the exact position where the command is called
+\DeclareDocumentCommand{\forcedMarginElement}{m}{%
+  \marginnote{{%
+    \pgfkeys{/yMarginDesign/alignment}%
+    \pgfkeys{/yMarginDesign/size}%
+    \color{\pgfkeysvalueof{/yMarginDesign/text color}}
+		#1%
+  }}%
+}
+
+% Typeset a paragraph in the margin exactly at the exact position where the command is called with a number (as a footnote)
+\DeclareDocumentCommand{\forcedMarginNote}{m}{%
+	\printMarginNoteMark
+	\ignorespaces%
+	\forcedMarginElement{%
+		\sideMark[#1]{\thefootnote}%
+		\ignorespaces%
+		#1%
+	}%
+}
+
+\DeclareDocumentCommand{\sideTable}{o m}{%
+	\marginpar{%
+		\strictpagechecktrue%
+		\checkoddpage%
+		\ifoddpage%
+		\justifying\footnotesize%
+		\else%
+		\RaggedLeft\footnotesize%
+		\fi%
+		\@afterindentfalse\@afterheading
+		\vspace*{6mm} % compensate the table space added above the first line by the gape command
+		#2
+		\captionsetup*[table]{font={footnotesize},hypcap=false}
+		\IfValueT{#1}{\captionof{table}{#1}}
+	}
+}
+
+\DeclareDocumentCommand{\sideFigure}{o m}{%
+	\marginElement{%
+		\strictpagechecktrue
+		\checkoddpage
+		\ifoddpage%
+		\RaggedRight%
+		\else%
+		\RaggedLeft%
+		\fi%
+		\@afterindentfalse\@afterheading%
+		#2%
+		\captionsetup*[figure]{font={footnotesize},hypcap=false}%
+		\IfValueT{#1}{\vspace*{-2mm}\captionof{figure}{#1}}
+	}
+}
+
+\newcommand{\noHyphen}{%
+  \righthyphenmin=62
+  \lefthyphenmin=62
+}
+
+\DeclareDocumentCommand{\yTitle}{m}{%
+  \begingroup%
+    \large\scshape\bfseries%
+    #1%
+  \endgroup%
+}
+
+\DeclareDocumentCommand{\printchaptertableofcontents}{}{%
+  \marginElement{%
+    {%
+      %\vspace*{9mm}
+      \yTitle{Contenido}\\[2mm]
+      \printcontents{c}{1}[1]{\hypersetup{linkcolor=black}}%
+    }%
+  } 
+}
+
+\titlecontents{csection}
+  [8mm] % Left indent
+  {} % Above code
+  {\contentslabel[\bfseries\thecontentslabel]{8mm}\noHyphen} % Numbered entry
+  {\hspace*{-6mm}\noHyphen} % Numberless entry
+  {,\hspace*{1ex}\mbox{\emph{p.~\thecontentspage}}} % Filler
+
+%------------------------------------------------------------------------------
+%   TÍTULOS DE PARTE
+%------------------------------------------------------------------------------
+
+% parte numerada en la tabla de contenido
+\newcommand{\@mypartnumtocformat}[2]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{black!20}{\strut\parbox[c][.8cm]{\ecart}{\color{black!70}\Large\bfseries\centering#1}}\hskip\esp\colorbox{black}{\strut\parbox[c][.8cm]{\linewidth-\ecart-\esp}{\Large\centering#2}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% parte no numerada en la tabla de contenido
+\newcommand{\@myparttocformat}[1]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{black!40}{\strut\parbox[c][.8cm]{\linewidth}{\Large\centering#1}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength\esp
+\setlength\esp{4pt}
+\newlength\ecart
+\setlength\ecart{1.2cm-\esp}
+\newcommand{\thepartimage}{}%
+\newcommand{\partimage}[1]{\renewcommand{\thepartimage}{#1}}%
+\def\@part[#1]#2{%
+\ifnum \c@secnumdepth >-2\relax%
+\refstepcounter{part}%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname~\thepart\ ---\ #1}}
+\else%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{#1}}{#1}}%
+\fi%
+\startcontents%
+\markboth{}{}%
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
+\fill[gray!20](0cm,0cm) rectangle (\paperwidth,-\paperheight);
+\node[anchor=north west,inner sep=0pt,xshift=\Gm@lmargin/3,yshift=-3cm] at (current page.north west){\color{black}\scalebox{20}{\bfseries\@Roman\c@part}};
+\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{12cm}{
+\printcontents{l}{0}{\setcounter{tocdepth}{0}}%
+}};
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{black}\fontsize{45}{45}\bfseries#2}};
+\end{tikzpicture}};
+\end{tikzpicture}}%
+\@endpart}
+\def\@spart#1{%
+\startcontents%
+\phantomsection
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
+\fill[gray!60](0cm,0cm) rectangle (\paperwidth,-\paperheight);
+\node[anchor=north east] at (\paperwidth-1.75cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{45}{45}\bfseries#1}};
+\end{tikzpicture}};
+\end{tikzpicture}}
+\addcontentsline{toc}{part}{\texorpdfstring{%
+\setlength\fboxsep{0pt}%
+\noindent\protect\colorbox{gray!40}{\strut\protect\parbox[c][.7cm]{\linewidth}{\Large\protect\centering #1\quad\mbox{}}}}{#1}}%
+\@endpart}
+\def\@endpart{\vfil\newpage
+\if@twoside
+\if@openright
+\null
+\thispagestyle{empty}%
+\newpage
+\fi
+\fi
+\if@tempswa
+\twocolumn
+\fi}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Floats
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareDocumentCommand{\isOddPage}{mm}{%
+	\strictpagechecktrue%
+	\checkoddpage%
+	\ifoddpage%
+	#1%
+	\else%
+	#2%
+	\fi%
+}
+
+\DeclareCaptionFont{myCaptionFont}{\scshape\bfseries}
+\DeclareCaptionLabelSeparator{myCaptionLabelSeparator}{\hspace*{1ex}}
+\captionsetup{
+  labelfont=myCaptionFont,
+  justification=RaggedRight,
+  labelsep=myCaptionLabelSeparator,
+}
+
+\DeclareFloatVCode{parskip}{{\vspace{\parskip}}}
+\newlength{\twoparskip}
+\setlength{\twoparskip}{1.5\parskip}
+\DeclareFloatVCode{twoparskip}{{\vspace\twoparskip}}
+\DeclareFloatSeparators{marginparsep}{\hspace\marginparsep}
+\floatsetup[figure]{
+    precode=twoparskip,
+    margins=hangright,
+    floatwidth=\textwidth,
+    font={normalsize},
+    capposition=beside,
+    captionskip=0mm,
+    capbesideposition={top,right},
+    capbesidewidth=sidefil,
+    capbesidesep=marginparsep,%
+    footposition=caption,
+    footskip=0.5\baselineskip,
+    footfont={small},
+	postcode=twoparskip,
+}
+
+\floatsetup[widefloat]{%
+	capposition=bottom,
+	captionskip=\baselineskip,
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		Enumitem
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlist{
+  topsep=0mm,
+}
+\setlist[description]{font=\scshape}
+\setlist[enumerate]{font=\bfseries}
+\setlist[itemize]{label={$\bullet$}}
+
+\settasks{
+    label-format = \bfseries,
+    item-indent = 0.94cm,
+}
+
+%%%% MATEMÁTICAS %%%%%
+
+\newtheoremstyle{myplain}
+  {1.2\topsep}   % ABOVESPACE
+  {1.2\topsep}   % BELOWSPACE
+  {}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {:}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{myplain}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{axiom}{Axioma}[section]
+\newtheorem{lemma}{Lema}[section]
+\newtheorem{proposition}{Proposición}[section]
+\newtheorem{corollary}{Corolario}[section]
+\newtheorem{definition}{Definición}[section]
+\newtheorem*{example}{Ejemplo}
+\newtheorem*{examples}{Ejemplos}
+\newtheorem{observation}{Observación}[section]
+\newtheorem*{remark}{Nota}
+\newtheorem*{notation}{Notación}
+\newtheorem*{commentary}{Comentario}
+\newtheorem*{convention}{Convención}
+\newtheorem{problem}{Problema}
+\newtheorem*{Problem}{Problema}
+
+\newcommand{\demostracion}{\noindent\textbf{Demostración: }}
+
+\newcommand{\solucion}{\noindent\textbf{Solución: }}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\input{tex/portada}
+
+\renewcommand{\contentsname}{CONTENIDO}
+\hypersetup{hidelinks}
+\tableofcontents
+\label{toc-contents}
+
+\pagestyle{fancy}
+
+\input{tex/prefacio}
+
+%\part{PRIMER PARCIAL}
+
+\input{tex/chapters/capitulo1}
+
+\input{tex/chapters/capitulo2}
+
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{INDICE ALFABÉTICO}
+\renewcommand\indexname{ÍNDICE ALFABÉTICO}
+\printindex
+
+\input{tex/bibliografia}
+
+\end{document}
