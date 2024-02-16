@@ -1,4 +1,4 @@
-\documentclass[a4paper, fleqn]{book}
+\documentclass[letterpaper, fleqn]{book}
 \usepackage[spanish,es-noshorthands,es-tabla,es-lcroman]{babel}
 
 \usepackage{fix-cm}
@@ -63,6 +63,7 @@
 
 
 \usepackage{tikz}
+\usepackage{tikz-3dplot}
 
 \usetikzlibrary{shapes}
 \usetikzlibrary{positioning}
@@ -78,6 +79,7 @@
 \usetikzlibrary{fit}
 \usetikzlibrary{3d}
 \usetikzlibrary{patterns,angles,quotes}
+\usetikzlibrary{fadings}
 
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -86,7 +88,7 @@
 
 \geometry{
     %showframe,
-	a4paper,
+	letterpaper,
     asymmetric,
 	ignorefoot,
 	ignorehead,
@@ -237,7 +239,7 @@
 \titlespacing*% the star makes the first paragraph after the title unindented
     {\chapter}% command to format
     {0pt}% spacing on left
-    {0.1\textheight}% spacing before title
+    {0.13\textheight}% spacing before title
     {4ex}% spacing after the title
     [0pt]% extra margin on the right
 
@@ -509,7 +511,7 @@
 \DeclareFloatVCode{twoparskip}{{\vspace\twoparskip}}
 \DeclareFloatSeparators{marginparsep}{\hspace\marginparsep}
 \floatsetup[figure]{
-    precode=twoparskip,
+    %precode=twoparskip,
     margins=hangright,
     floatwidth=\textwidth,
     font={normalsize},
@@ -521,7 +523,7 @@
     footposition=caption,
     footskip=0.5\baselineskip,
     footfont={small},
-	postcode=twoparskip,
+	%postcode=twoparskip,
 }
 
 \floatsetup[widefloat]{%
@@ -576,10 +578,20 @@
 \newtheorem*{convention}{Convención}
 \newtheorem{problem}{Problema}
 \newtheorem*{Problem}{Problema}
+\newtheorem*{reminder}{Recordatorio}
 
 \newcommand{\demostracion}{\noindent\textbf{Demostración: }}
 
 \newcommand{\solucion}{\noindent\textbf{Solución: }}
+
+% number sets
+\newcommand{\RR}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{R}}{\mathbb{R}^{#1}}}}
+\newcommand{\NN}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{N}}{\mathbb{N}^{#1}}}}
+\newcommand{\ZZ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Z}}{\mathbb{Z}^{#1}}}}
+\newcommand{\QQ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Q}}{\mathbb{Q}^{#1}}}}
+\newcommand{\CC}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{C}}{\mathbb{C}^{#1}}}}
+\newcommand{\PP}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{P}}{\mathbb{P}^{#1}}}}
+\newcommand{\HH}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{H}}{\mathbb{H}^{#1}}}}
 
 \begin{document}
 
@@ -600,14 +612,7 @@
 
 \input{tex/chapters/capitulo1}
 
-\input{tex/chapters/capitulo2}
-
-\cleardoublepage
-\phantomsection
-\setlength{\columnsep}{0.75cm}
-\addcontentsline{toc}{chapter}{INDICE ALFABÉTICO}
-\renewcommand\indexname{ÍNDICE ALFABÉTICO}
-\printindex
+%\input{tex/chapters/capitulo2}
 
 \input{tex/bibliografia}
 
