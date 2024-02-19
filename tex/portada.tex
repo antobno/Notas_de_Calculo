@@ -6,20 +6,21 @@
         overlay,
         remember picture,
       ]
-      \node[anchor=center] at ($(current page)+(-3.1,-5)$) {\includegraphics[width=1.3\paperwidth]{Images/Portada/FONDO.jpg}};
+      \node[anchor=center] at ($(current page)+(0,-1)$) {\includegraphics[width=1.1\paperwidth]{Images/Portada/FONDO.pdf}};
+      \fill[white] ($(current page.west)+(0,6.5)$) rectangle ($(current page.east)+(0,7)$);
+      \fill[white] ($(current page.south west)+(0,4.5)$) rectangle ($(current page.south east)+(0,5.3)$);
     \end{tikzpicture}
   \endgroup%
   %\sffamily%
-
-  \vspace*{2cm}%
+  \vspace*{-0.5cm}%
   \begingroup%
     \bfseries\flushright%
     % \scshape%
     \begingroup%
       \Huge%
       \color{black}
-      \noindent\scalebox{2}{NOTAS DE}\\[10mm]
-      \scalebox{2}{CÁLCULO III}\\[50mm]
+      \noindent\scalebox{2}{CÁLCULO}\\[10mm]
+      \scalebox{2}{MULTIVARIABLE}\\[15.2cm]
     \endgroup%
     \begingroup%
       \bfseries\LARGE%
@@ -41,7 +42,7 @@
   }%
   ~\hfill%
   \parbox[b]{3cm}{%
-    \includegraphics[width=\linewidth]{Images/Portada/LOGO.pdf}
+    %\includegraphics[width=\linewidth]{Images/Portada/LOGO.pdf}
   }
 \end{titlepage}
 \restoregeometry%

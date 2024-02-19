@@ -110,6 +110,30 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \end{enumerate}
 \end{example}
 
+\begin{definition}
+    Una función de tres variables, $f$, es una regla que asigna a cada terna ordenada $(x, y, z)$ en un dominio $D \subseteq \RR[3]$ un único número real denotado por $f(x, y, z)$.
+\end{definition}
+
+\begin{example}
+    Graficar el dominio de
+    $$f(x, y, z) = \sqrt{x^2 + y^2 + z^2 - 4} + \ln \left( \frac{1}{\sqrt{x^2 + y^2 -1}} \right).$$
+    \solucion Procediendo como ejemplos anteriores, notemos que se debe cumplir que
+    $$x^2 + y^2 + z^2 - 4 \geq 0 \quad \text{ y } \quad x^2 + y^2 - 1 > 0.$$
+    Analicemos la primer desigualdad, si tomamos la igualdad, obtenemos
+    \begin{align*}
+        x^2 + y^2 + z^2 - 4 & \geq 0 \\
+        x^2 + y^2 + z^2 & \geq 4
+    \end{align*}
+    la cual es una esfera centrada en el origen y de radio igual a $2$. Luego, tomando la segunda desigualdad,
+    \begin{align*}
+        x^2 + y^2 - 1 & > 0 \\
+        x^2 + y^2 & > 1
+    \end{align*}
+    la cual es un cilindro de radio igual a $1$. Así, el dominio de la función $f$ es todo el exterior tanto del cilindro, como de la esfera. La función puede tomar puntos del “contorno” de la esfera, pero no puede tomar puntos del “contorno” del cilindro. Es difícil dibujar con exactitud el dominio de $f$, pero puede mirar la figura \ref{funcion3d}.\sideFigure[\label{funcion3d}]{
+    \includegraphics[width=\linewidth]{Images/Capitulo1/Dominio_de_funcion3d.pdf}
+    }
+\end{example}
+
 \section{Gráficas de funciones y curvas de nivel}
 
 \begin{reminder}
@@ -121,14 +145,14 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \begin{figure}[h!]
         \centering
         \subfloat[Elipse horizontal: Cuando $a>b$]{
-        \begin{tikzpicture}[scale=0.9]
+        \begin{tikzpicture}[scale=0.8]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw (0,0) ellipse (2cm and 1cm);
         \end{tikzpicture}
         } \hfill
         \subfloat[Elipse vertical: Cuando $b>a$]{
-        \begin{tikzpicture}[scale=0.9]
+        \begin{tikzpicture}[scale=0.8]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw (0,0) ellipse (1cm and 2cm);
@@ -143,7 +167,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \begin{figure}[h!]
         \centering
         \subfloat[Hipérbole horizontal: Cuando $a>b$]{
-        \begin{tikzpicture}[scale=0.9]
+        \begin{tikzpicture}[scale=0.8]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw[rotate=90,yshift=1cm] (-2,2) parabola bend (0,0) (2,2);
@@ -151,7 +175,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
         \end{tikzpicture}
         } \hfill
         \subfloat[Hipérbole vertical: Cuando $b>a$]{
-        \begin{tikzpicture}[scale=0.9]
+        \begin{tikzpicture}[scale=0.8]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw[yshift=1cm] (-2,2) parabola bend (0,0) (2,2);
@@ -160,7 +184,11 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
         }
         \caption{Representación de la hipérbole}
     \end{figure}
-\end{reminder}\sideFigure[]{
+\end{reminder}
+%Otro modo de visualizar el comportamiento de una función de dos variables es considerar su gráfica
+
+\newpage
+\sideFigure[\label{fig:1.6defuncion}]{\vspace{2cm}
 \tdplotsetmaincoords{75}{110}
 \begin{tikzpicture}[tdplot_main_coords,scale=2]
     \draw[thick,-latex] (0,0,0) coordinate(O) -- (2.5,0,0) node[anchor=north east] (x) {$x$};
@@ -183,19 +211,119 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \draw[thick,decoration={brace,raise=2.5pt},decorate] (P) -- (Q) node[midway,right=2mm]{$f(x, y)$};
     \draw[fill=gray,fill opacity=0.5,name path=back,->] plot[variable=\x,samples=180,domain=50:270] ({1.2*cos(\x)},{sin(\x)},{1.2+0.4*cos(2*\x)}) to[out=30,in=160] cycle;
     \draw[fill=gray,fill opacity=0.5,name path=front] plot[variable=\x,samples=180,domain=-90:50] ({1.2*cos(\x)},{sin(\x)},{1.2+0.4*cos(2*\x)}) to[out=160,in=30] cycle;
+    \node[xshift=-0.2cm,yshift=1cm] at (0.2,0.5,1.2) {$S$};
+    \node[xshift=-1.5cm,yshift=0.2cm] at (0.2,0.5,0) {$D$};
 \end{tikzpicture}
 }
+
 \sideFigure[Un ejemplo común de las curvas de nivel son los mapas topográficos de regiones montañosas]{
 \includegraphics[width=\linewidth]{Images/Capitulo1/Cartografico.pdf}
 }
-Otro modo de visualizar el comportamiento de una función de dos variables es considerar su gráfica
 
 \begin{definition}
-    Si $f$ es una función de dos variables con dominio $D$, entonces la gráfica de $f$ es el conjunto de todos los puntos $(x, y, z)$ en $\RR[3]$ tal que $(x, y)$ y $z = f(x, y)$ está en $D$.
+    Sea $f:D \subseteq \RR[n] \longrightarrow \RR$ una función, entonces la gráfica de $f$ es
+    $$\mathcal{G}(f) = \left\{ \big(x, f(x)\big) \mid x \in D \right\} \subseteq \RR[n+1].$$
 \end{definition}
 
-Un método para poder graficar funciones de dos funciones es mediante un mapa de curvas de nivel en el cual puntos de elevación igual se unen para formar líneas de contorno o curvas de nivel. Las curvas de nivel son líneas imaginarias que se utilizan para representar superficies tridimensionales en dos dimensiones, como mapas topográficos o gráficos de funciones de dos variables. Estas curvas conectan puntos que tienen la misma altura o el mismo valor de la función en el caso de las superficies. Por ejemplo, en un mapa topográfico, las curvas de nivel unen puntos que tienen la misma elevación sobre el nivel del mar. Al observar estas curvas, podemos entender la variación de la elevación o la función en diferentes áreas de la superficie, lo que proporciona una representación visual y comprensible del terreno o de la función en cuestión. Las curvas de nivel son una herramienta poderosa en diversas áreas, desde la cartografía hasta la ingeniería y las ciencias ambientales, facilitando la interpretación y el análisis de datos espaciales y funcionales.
+\begin{observation}
+    Si $f$ es una función de dos variables con dominio $D$, entonces la gráfica de $f$ es el conjunto de todos los puntos $(x, y, z)$ en $\RR[3]$ tal que $(x, y)$ y $z = f(x, y)$ está en $D$.
+\end{observation}
+
+Así como la gráfica de una función $f$ de una variable es una curva $C$ con ecuación $y = f (x)$, la gráfica de una función $f$ de dos variables es una superficie $S$ cuya ecuación es $z = f (x, y)$. Podemos visualizar la gráfica $S$ de $f$ directamente sobre o abajo de su dominio $D$ en el plano $xy$ (véase figura \ref{fig:1.6defuncion}).
+
+Un método para poder graficar funciones de dos funciones es mediante un mapa de curvas de nivel en el cual puntos de elevación igual se unen para formar líneas de contorno o curvas de nivel. Las curvas de nivel son líneas imaginarias que se utilizan para representar superficies tridimensionales en dos dimensiones, como mapas topográficos o gráficos de funciones de dos variables. Estas curvas conectan puntos que tienen la misma altura o el mismo valor de la función en el caso de las superficies. Por ejemplo, en un mapa topográfico, las curvas de nivel unen puntos que tienen la misma elevación sobre el nivel del mar. Al observar estas curvas, podemos entender la variación de la elevación o la función en diferentes áreas de la superficie, lo que proporciona una representación visual y comprensible del terreno o de la función en cuestión. %Las curvas de nivel son una herramienta poderosa en diversas áreas, desde la cartografía hasta la ingeniería y las ciencias ambientales, facilitando la interpretación y el análisis de datos espaciales y funcionales.
 
 \begin{definition}
-    Las \textbf{curvas de nivel} de una función $f$ de dos variables son las curvas cuyas ecuaciones son $f(x, y) = k$, donde $k$ es una constante real.
+    Se define la \textbf{curva de nivel} de $f$ correspondiente al valor $k \in \RR$ como
+    $$\mathcal{C}_k(f) = \left\{ (x_1, x_2, \dots, x_n) \in D \mid f(x_1, x_2, \dots, x_n) = k \right\}.$$
+\end{definition}
+
+\begin{observation}
+    Una curva de nivel $f(x, y) = k$ es el conjunto de todos los puntos en el dominio de $f$ en el cual $f$ toma un valor dado $k$. En otras palabras, señala dónde tiene una altura $k$ la gráfica de $f$.
+\end{observation}
+
+\begin{example}
+    Graficar la función $f(x, y) = x^{2} - y^{2}$.\\
+    \solucion Para graficar la función $f$, obtengamos algunas curvas de nivel. Sea $z = x^2 - y^2$,
+    \begin{itemize}
+        \item Si $z = 0$, entonces
+        \begin{align*}
+            0 & = x^2 - y^2 \\
+            & = (x-y)(x+y);
+        \end{align*}
+        así que $y = x$ o $y = -x$. Es decir, obtenemos dos rectas perpendiculares.
+        \item Si $z = 1$, entonces
+        $$1 = x^2 - y^2;$$
+        así que obtenemos una hipérbole (cuando $y = 0$, $x = \pm 1$).
+        \item Si $z = 2$, entonces
+        $$2 = x^2 - y^2;$$
+        así que obtenemos una hipérbole (cuando $y = 0$, $x = \pm \sqrt{2}$).
+        \item Si $z = 3$, entonces
+        $$3 = x^2 - y^2;$$
+        así que obtenemos una hipérbole (cuando $y = 0$, $x = \pm \sqrt{3}$).
+    \end{itemize}
+    Entonces, las curvas de nivel (en el eje $xy$) son como se muestran a continuación:
+    \begin{figure}[h!]
+        \centering
+        \subfloat[Cuando $z = 0$]{
+        \begin{tikzpicture}
+            \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+            \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+            \draw (-2.5,-2.5) -- (2.5,2.5);
+            \draw (-2.5,2.5) -- (2.5,-2.5);
+        \end{tikzpicture}
+        } \hfill
+        \subfloat[Cuando $z = 1$]{
+        \begin{tikzpicture}
+            \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+            \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+            \draw[rotate=90,yshift=0.5cm] (-2,2) parabola bend (0,0) (2,2);
+            \draw[rotate=-90,yshift=0.5cm] (-2,2) parabola bend (0,0) (2,2);
+            \node[below] at (-1,0) {$-1$};
+            \node[below] at (1,0) {$1$};
+        \end{tikzpicture}
+        } \\
+        \subfloat[Cuando $z = 2$]{
+        \begin{tikzpicture}
+            \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+            \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+            \draw[rotate=90,yshift=0.7cm] (-2,2) parabola bend (0,0) (2,2);
+            \draw[rotate=-90,yshift=0.7cm] (-2,1.8) parabola bend (0,0) (2,1.8);
+            \node[below] at (-1.2,0) {$-\sqrt{2}$};
+            \node[below] at (1.2,0) {$\sqrt{2}$};
+        \end{tikzpicture}
+        } \hfill
+        \subfloat[Cuando $z = 3$]{
+        \begin{tikzpicture}
+            \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+            \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+            \draw[rotate=90,yshift=0.86cm] (-2,2) parabola bend (0,0) (2,2);
+            \draw[rotate=-90,yshift=0.86cm] (-2,1.6) parabola bend (0,0) (2,1.6);
+            \node[below] at (-1.4,0) {$-\sqrt{3}$};
+            \node[below] at (1.4,0) {$\sqrt{3}$};
+        \end{tikzpicture}
+        }
+        \caption{Algunas curvas de nivel de $x^2 - y^2$}
+    \end{figure}
+    
+    \noindent Por último, encontremos los “perfiles” de la función. Si $y = 0$, entonces $z = x^2$; y si $x = 0$, entonces $z = -x^2$. Por tanto, la gráfica de la función está dada como sigue:
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/Capitulo1/Grafica_de_funcion.pdf}
+        \caption{Gráfica de la función $x^2 - y^2$}
+    \end{figure}
+\end{example}
+
+\newpage
+
+\section{Norma}
+
+\begin{definition}
+    Sea $V$ un espacio vectorial sobre $K$ ($K = \RR$ o $\CC$), se dice que $\| \quad \|$ es una norma si y solo si
+    \begin{enumerate}[label=\roman*.]
+        \item $\| \mathbf{x} \| \geq 0$, $\forall \mathbf{x} \in V$.
+        \item $\| \mathbf{x} \| = 0$ si y solo si $\mathbf{x} = \mathbf{0}$.
+        \item $\| \lambda \mathbf{x} \| = |\lambda| \| \mathbf{x} \|$, $\forall \lambda \in K$, $\forall \mathbf{x} \in V$.
+        \item $\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|$, $\forall \mathbf{x}, \mathbf{y} \in V$ (desigualdad del triángulo).
+    \end{enumerate}
 \end{definition}
