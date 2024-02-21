@@ -115,7 +115,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
 \end{definition}
 
 \begin{example}
-    Graficar el dominio de
+    Graficar el dominio de la siguiente función:
     $$f(x, y, z) = \sqrt{x^2 + y^2 + z^2 - 4} + \ln \left( \frac{1}{\sqrt{x^2 + y^2 -1}} \right).$$
     \solucion Procediendo como ejemplos anteriores, notemos que se debe cumplir que
     $$x^2 + y^2 + z^2 - 4 \geq 0 \quad \text{ y } \quad x^2 + y^2 - 1 > 0.$$
@@ -124,14 +124,29 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
         x^2 + y^2 + z^2 - 4 & \geq 0 \\
         x^2 + y^2 + z^2 & \geq 4
     \end{align*}
-    la cual es una esfera centrada en el origen y de radio igual a $2$. Luego, tomando la segunda desigualdad,
+    la cual es una esfera centrada en el origen y de radio igual a $2$. Luego, tomando la segunda desigualdad, se sigue que
     \begin{align*}
         x^2 + y^2 - 1 & > 0 \\
         x^2 + y^2 & > 1
     \end{align*}
-    la cual es un cilindro de radio igual a $1$. Así, el dominio de la función $f$ es todo el exterior tanto del cilindro, como de la esfera. La función puede tomar puntos del “contorno” de la esfera, pero no puede tomar puntos del “contorno” del cilindro. Es difícil dibujar con exactitud el dominio de $f$, pero puede mirar la figura \ref{funcion3d}.\sideFigure[\label{funcion3d}]{
+    Si se toma la igualdad, esta será un cilindro de radio igual a $1$. Así, el dominio de la función $f$ es todo el exterior tanto del cilindro, como de la esfera. La función puede tomar puntos del “contorno” de la esfera, pero no puede tomar puntos del “contorno” del cilindro. Es difícil dibujar con exactitud el dominio de $f$, pero puede mirar la figura \ref{funcion3d}.\sideFigure[\label{funcion3d}]{
     \includegraphics[width=\linewidth]{Images/Capitulo1/Dominio_de_funcion3d.pdf}
     }
+\end{example}
+
+\begin{example}
+    Graficar el dominio de la siguiente función:
+    $$f(x, y, z) = \sqrt{x^2 + y^2 - 4} + \frac{1}{y + z - 2}.$$
+    \solucion Procediendo como ejemplos anteriores, notemos que se debe cumplir que
+    $$x^2 + y^2 - 4 \geq 0 \quad \text{ y } \quad y + z - 2 \neq 0.$$
+    Analicemos la primer desigualdad, si tomamos la igualdad, obtenemos\sideFigure[\label{dominiodefuncion3d}]{
+    \includegraphics[width=\linewidth]{Images/Capitulo1/Dominio_de_funcion_en3D.pdf}
+    }
+    \begin{align*}
+        x^2 + y^2 - 4 & \geq 0 \\
+        x^2 + y^2 & \geq 4
+    \end{align*}
+    la cual es un cilindro centrado en el origen y de radio igual a $2$. Luego, analizando la segunda expresión; si tomamos la igualdad, se obtiene $y + z = 2$, el cual, es un plano. Por lo tanto, el dominio de $f$ es el conjunto de $(x, y, z)$ que quedan en o fuera del cilindro $x^2 + y^2 = 4$. Además, no puede tomar los puntos que conforma el plano $y + z - 2 = 0$, pues la división entre $0$ no está definida. Es difícil dibujar con exactitud el dominio de $f$, pero puede mirar la figura \ref{dominiodefuncion3d}.
 \end{example}
 
 \section{Gráficas de funciones y curvas de nivel}
@@ -145,14 +160,14 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \begin{figure}[h!]
         \centering
         \subfloat[Elipse horizontal: Cuando $a>b$]{
-        \begin{tikzpicture}[scale=0.8]
+        \begin{tikzpicture}[scale=0.9]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw (0,0) ellipse (2cm and 1cm);
         \end{tikzpicture}
         } \hfill
         \subfloat[Elipse vertical: Cuando $b>a$]{
-        \begin{tikzpicture}[scale=0.8]
+        \begin{tikzpicture}[scale=0.9]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw (0,0) ellipse (1cm and 2cm);
@@ -167,7 +182,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     \begin{figure}[h!]
         \centering
         \subfloat[Hipérbole horizontal: Cuando $a>b$]{
-        \begin{tikzpicture}[scale=0.8]
+        \begin{tikzpicture}[scale=0.9]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw[rotate=90,yshift=1cm] (-2,2) parabola bend (0,0) (2,2);
@@ -175,7 +190,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
         \end{tikzpicture}
         } \hfill
         \subfloat[Hipérbole vertical: Cuando $b>a$]{
-        \begin{tikzpicture}[scale=0.8]
+        \begin{tikzpicture}[scale=0.9]
             \draw[-latex] (-3,0) -- (3,0) node[below left] {$x$};
             \draw[-latex] (0,-3) -- (0,3) node[below left] {$y$};
             \draw[yshift=1cm] (-2,2) parabola bend (0,0) (2,2);
@@ -187,7 +202,6 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
 \end{reminder}
 %Otro modo de visualizar el comportamiento de una función de dos variables es considerar su gráfica
 
-\newpage
 \sideFigure[\label{fig:1.6defuncion}]{\vspace{2cm}
 \tdplotsetmaincoords{75}{110}
 \begin{tikzpicture}[tdplot_main_coords,scale=2]
@@ -219,7 +233,10 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
 \sideFigure[Un ejemplo común de las curvas de nivel son los mapas topográficos de regiones montañosas]{
 \includegraphics[width=\linewidth]{Images/Capitulo1/Cartografico.pdf}
 }
-
+\sideFigure[\label{fig:curvasdenivelre}Representación geométrica de las curvas de nivel de una función]{
+\includegraphics[width=\linewidth]{Images/Capitulo1/Curvas_de_nivelBW.pdf}
+}
+\vspace{-0.5cm}
 \begin{definition}
     Sea $f:D \subseteq \RR[n] \longrightarrow \RR$ una función, entonces la gráfica de $f$ es
     $$\mathcal{G}(f) = \left\{ \big(x, f(x)\big) \mid x \in D \right\} \subseteq \RR[n+1].$$
@@ -229,7 +246,7 @@ Si una función $f$ está dada por una fórmula y no se especifica dominio algun
     Si $f$ es una función de dos variables con dominio $D$, entonces la gráfica de $f$ es el conjunto de todos los puntos $(x, y, z)$ en $\RR[3]$ tal que $(x, y)$ y $z = f(x, y)$ está en $D$.
 \end{observation}
 
-Así como la gráfica de una función $f$ de una variable es una curva $C$ con ecuación $y = f (x)$, la gráfica de una función $f$ de dos variables es una superficie $S$ cuya ecuación es $z = f (x, y)$. Podemos visualizar la gráfica $S$ de $f$ directamente sobre o abajo de su dominio $D$ en el plano $xy$ (véase figura \ref{fig:1.6defuncion}).
+Así como la gráfica de una función $f$ de una variable es una curva $C$ con ecuación $y = f (x)$, la gráfica de una función $f$ de dos variables es una superficie $S$ cuya ecuación es $z = f (x, y)$. Podemos visualizar la gráfica $S$ de $f$ directamente sobre o abajo de su dominio $D$ en el plano $xy$ (véase la figura \ref{fig:1.6defuncion}).
 
 Un método para poder graficar funciones de dos funciones es mediante un mapa de curvas de nivel en el cual puntos de elevación igual se unen para formar líneas de contorno o curvas de nivel. Las curvas de nivel son líneas imaginarias que se utilizan para representar superficies tridimensionales en dos dimensiones, como mapas topográficos o gráficos de funciones de dos variables. Estas curvas conectan puntos que tienen la misma altura o el mismo valor de la función en el caso de las superficies. Por ejemplo, en un mapa topográfico, las curvas de nivel unen puntos que tienen la misma elevación sobre el nivel del mar. Al observar estas curvas, podemos entender la variación de la elevación o la función en diferentes áreas de la superficie, lo que proporciona una representación visual y comprensible del terreno o de la función en cuestión. %Las curvas de nivel son una herramienta poderosa en diversas áreas, desde la cartografía hasta la ingeniería y las ciencias ambientales, facilitando la interpretación y el análisis de datos espaciales y funcionales.
 
@@ -239,7 +256,7 @@ Un método para poder graficar funciones de dos funciones es mediante un mapa de
 \end{definition}
 
 \begin{observation}
-    Una curva de nivel $f(x, y) = k$ es el conjunto de todos los puntos en el dominio de $f$ en el cual $f$ toma un valor dado $k$. En otras palabras, señala dónde tiene una altura $k$ la gráfica de $f$.
+    Una curva de nivel $f(x, y) = k$ es el conjunto de todos los puntos en el dominio de $f$ en el cual $f$ toma un valor dado $k$. En otras palabras, señala dónde tiene una altura $k$ la gráfica de $f$. Vea la imagen \ref{fig:curvasdenivelre}.
 \end{observation}
 
 \begin{example}
@@ -262,7 +279,7 @@ Un método para poder graficar funciones de dos funciones es mediante un mapa de
         $$3 = x^2 - y^2;$$
         así que obtenemos una hipérbole (cuando $y = 0$, $x = \pm \sqrt{3}$).
     \end{itemize}
-    Entonces, las curvas de nivel (en el eje $xy$) son como se muestran a continuación:
+    Entonces, las curvas de nivel (en el plano $xy$) son como se muestran a continuación:
     \begin{figure}[h!]
         \centering
         \subfloat[Cuando $z = 0$]{
@@ -287,7 +304,7 @@ Un método para poder graficar funciones de dos funciones es mediante un mapa de
         \begin{tikzpicture}
             \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
             \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
-            \draw[rotate=90,yshift=0.7cm] (-2,2) parabola bend (0,0) (2,2);
+            \draw[rotate=90,yshift=0.7cm] (-2,1.8) parabola bend (0,0) (2,1.8);
             \draw[rotate=-90,yshift=0.7cm] (-2,1.8) parabola bend (0,0) (2,1.8);
             \node[below] at (-1.2,0) {$-\sqrt{2}$};
             \node[below] at (1.2,0) {$\sqrt{2}$};
@@ -297,7 +314,7 @@ Un método para poder graficar funciones de dos funciones es mediante un mapa de
         \begin{tikzpicture}
             \draw[-latex] (-2.5,0) -- (2.5,0) node[below left] {$x$};
             \draw[-latex] (0,-2.5) -- (0,2.5) node[below left] {$y$};
-            \draw[rotate=90,yshift=0.86cm] (-2,2) parabola bend (0,0) (2,2);
+            \draw[rotate=90,yshift=0.86cm] (-2,1.6) parabola bend (0,0) (2,1.6);
             \draw[rotate=-90,yshift=0.86cm] (-2,1.6) parabola bend (0,0) (2,1.6);
             \node[below] at (-1.4,0) {$-\sqrt{3}$};
             \node[below] at (1.4,0) {$\sqrt{3}$};
@@ -305,25 +322,141 @@ Un método para poder graficar funciones de dos funciones es mediante un mapa de
         }
         \caption{Algunas curvas de nivel de $x^2 - y^2$}
     \end{figure}
-    
-    \noindent Por último, encontremos los “perfiles” de la función. Si $y = 0$, entonces $z = x^2$; y si $x = 0$, entonces $z = -x^2$. Por tanto, la gráfica de la función está dada como sigue:
+    \newpage
+    \noindent Por último, encontremos los “perfiles” de la función. Si $y = 0$, entonces $z = x^2$; y si $x = 0$, entonces $z = -x^2$. Por tanto, la gráfica de la función $f(x, y) = x^{2} - y^{2}$ está dada como sigue:
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{Images/Capitulo1/Grafica_de_funcion.pdf}
+        \begin{tikzpicture}
+            \begin{axis}[view={-20}{45},
+                %axis lines=center,
+                %axis on top,
+                colormap/blackwhite
+                ]
+                \addplot3 [surf,
+                draw=black,
+                domain=-9:9,
+                domain y=-9:9,
+                ] {x^2-y^2};
+            \end{axis}
+        \end{tikzpicture}
         \caption{Gráfica de la función $x^2 - y^2$}
     \end{figure}
 \end{example}
 
-\newpage
+\section{Definición y ejemplos de normas}
 
-\section{Norma}
+Una norma en el contexto del cálculo de varias variables es una función que asigna a cada vector en un espacio vectorial una magnitud no negativa, de modo que satisface ciertas propiedades fundamentales. La norma más comúnmente utilizada es la norma euclidiana o norma $\ell_2$, que se define como la raíz cuadrada de la suma de los cuadrados de las componentes del vector. Esta norma captura la noción geométrica de distancia y es fundamental en el análisis vectorial y el cálculo diferencial e integral.
+
+Además de la norma euclidiana, existen otras normas importantes en el cálculo de varias variables, como la norma $\ell_1$ (que es la suma de los valores absolutos de las componentes del vector), la norma $\ell_{\infty}$ (que es el máximo valor absoluto de las componentes del vector), entre otras.
 
 \begin{definition}
-    Sea $V$ un espacio vectorial sobre $K$ ($K = \RR$ o $\CC$), se dice que $\| \quad \|$ es una norma si y solo si
+    Sea $V$ un espacio vectorial sobre $K$ (donde $K$ generalmente es el conjunto de los números reales $\mathbb{R}$ o los números complejos $\mathbb{C}$). La norma en $V$ es una función $\| \quad \| : V \longrightarrow \RR$ que satisface las siguientes propiedades: Para todo $\mathbf{x}$, $\mathbf{y} \in V$ y $\lambda \in K$
     \begin{enumerate}[label=\roman*.]
-        \item $\| \mathbf{x} \| \geq 0$, $\forall \mathbf{x} \in V$.
-        \item $\| \mathbf{x} \| = 0$ si y solo si $\mathbf{x} = \mathbf{0}$.
-        \item $\| \lambda \mathbf{x} \| = |\lambda| \| \mathbf{x} \|$, $\forall \lambda \in K$, $\forall \mathbf{x} \in V$.
-        \item $\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|$, $\forall \mathbf{x}, \mathbf{y} \in V$ (desigualdad del triángulo).
+        \item $\| \mathbf{x} \| \geq 0$,
+        \item $\| \mathbf{x} \| = 0$ si y solo si $\mathbf{x} = \mathbf{0}$,
+        \item $\| \lambda \mathbf{x} \| = |\lambda| \| \mathbf{x} \|$,
+        \item $\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|$ (desigualdad del triángulo).
     \end{enumerate}
 \end{definition}
+
+\begin{example}
+    En $\RR$, sea $\| \mathbf{x} \| = |x|$, probemos entonces que $\| \quad \|$ cumple las cuatro propiedades establecidas en la definición previa.
+    \begin{enumerate}[label=\roman*.]
+        \item Sea $\mathbf{x} \in \RR$, entonces
+        \begin{align*}
+            \| \mathbf{x} \| & = |x| \\
+            & \geq 0 
+        \end{align*}
+        Por tanto, $\| \mathbf{x} \| \geq 0$.
+        \item Por el curso de Cálculo I,
+        $$\| \mathbf{x} \| = 0_{\RR} \Longleftrightarrow |x| = 0_{\RR} = 0 \Longleftrightarrow x = 0 = \mathbf{0}_V.$$
+        Por tanto, $\| \mathbf{x} \| = 0$ si y solo si $\mathbf{x} = \mathbf{0}$.
+        \item Sea $\mathbf{x} \in \RR$ y $\lambda \in \RR$, entonces
+        \begin{align*}
+            \| \lambda \mathbf{x} \| & = |\lambda x| \\
+            & = |\lambda| |x| \\
+            & = |\lambda| \| \mathbf{x} \| 
+        \end{align*}
+        Por tanto, $\| \lambda \mathbf{x} \| = |\lambda| \| \mathbf{x} \|$.
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in \RR$, entonces
+        \begin{align*}
+            \| \mathbf{x} + \mathbf{y} \| & = |x + y| \\
+            & \leq |x| + |y| \\
+            & = \| \mathbf{x} \| + \| \mathbf{y} \|
+        \end{align*}
+        Por tanto, $\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|$.
+    \end{enumerate}
+    Dado que $\| \quad \|$ satisface las cuatro propiedades de una norma, concluimos que  $\| \quad \|$ es una norma.
+\end{example}
+
+\begin{observation}
+    En el ejemplo anterior, aunque el espacio vectorial era $\RR$, es importante distinguir entre los vectores y los números reales, pues son cosas muy distintas. Por tanto, los vectores los representaremos utilizando letras en negrita para distinguirlos de los números reales.
+\end{observation}
+
+\begin{definition}
+    En $\RR[2]$, sea $\| (x, y) \|_1 = |x| + |y|$, probemos entonces que $\| \quad \|_1$ cumple las cuatro propiedades establecidas en la definición previa.
+    \begin{enumerate}[label=\roman*.]
+        \item Sea $(x, y) \in \RR[2]$, entonces
+        \begin{align*}
+            \| (x, y) \|_1 & = \smallunderbrace{|x|}_{\geq 0} + \smallunderbrace{|y|}_{\geq 0} \\
+            & \geq 0
+        \end{align*}
+        Así, $\| (x, y) \|_1 \geq 0$.
+        \item \begin{enumerate}
+            \item[$\Rightarrow)$] Sea $(x, y) \in \RR[2]$, entonces
+            $$\| (x, y) \|_1 = |x| + |y|,$$
+            así que $|x| = 0$ y $|y| = 0$. Es decir, $x = 0$ y $y = 0$. Así pues, se sigue que $(x, y) = (0, 0) = \mathbf{0}$.
+            \item[$\Leftarrow)$] Sea $\mathbf{0} \in \RR[2]$ con $\mathbf{0} = (0, 0)$, entonces
+            \begin{align*}
+                \| (0, 0) \|_1 & = |0| + |0| \\
+                & = 0 + 0 \\
+                & = 0
+            \end{align*}
+            Por lo tanto, $\| (0, 0) \|_1 = 0$.
+        \end{enumerate}
+        \item Sea $(x, y) \in \RR[2]$ y $\lambda \in \RR$, entonces
+        \begin{align*}
+            \| \lambda (x, y) \|_1 & = \| (\lambda x, \lambda y) \|_1 \\
+            & = |\lambda x| + |\lambda y| \\
+            & = |\lambda| |x| + |\lambda| |y| \\
+            & = \lambda \left( |x| + |y| \right) \\
+            & = |\lambda| \| (x, y) \|_1
+        \end{align*}
+        Por tanto, $\| \lambda (x, y) \|_1 = |\lambda| \| (x, y) \|_1$.
+        \item Sean $(x, y)$, $(u, v) \in \RR[2]$, entonces
+        \begin{align*}
+            \| (x, y) + (u, v) \|_1 & = \| (x + u, y + v) \|_1 \\
+            & = |x + u| + |y + v| \\
+            & \leq |x| + |u| + |y| + |v| \\
+            & = |x| + |y| + |u| + |v| \\
+            & = \| (x, y) \|_1 + \| (u, v) \|_1
+        \end{align*}
+        Por tanto, $\| (x, y) + (u, v) \|_1 \leq \| (x, y) \|_1 + \| (u, v) \|_1$.
+    \end{enumerate}
+    Dado que $\| \quad \|_1$ satisface las cuatro propiedades de una norma, concluimos que  $\| \quad \|_1$ es una norma.
+\end{definition}
+
+\begin{example}
+    En $\RR[2]$, sea $\| (x, y) \|_{\infty} = \max \left\{ |x|, |y| \right\}$, probemos entonces que $\| \quad \|_{\infty}$ cumple las cuatro propiedades establecidas en la definición previa.
+    \begin{enumerate}[label=\roman*.]
+        \item Sea $(x, y) \in \RR[2]$, entonces
+        $$\| (x, y) \|_{\infty} = \max \left\{ |x|, |y| \right\}.$$
+        Notemos que si $\max \left\{ |x|, |y| \right\} = |x|$, entonces $\| (x, y) \|_{\infty} = |x| \geq 0$. De manera análoga, si $\max \left\{ |x|, |y| \right\} = |y|$, entonces $\| (x, y) \|_{\infty} = |y| \geq 0$. Así que, en cualquiera de los dos casos, $\| (x, y) \|_{\infty} \geq 0$.
+        \item \begin{enumerate}
+            \item[$\Rightarrow)$] Sea $(x, y) \in \RR[2]$, entonces
+            $$\| (x, y) \|_{\infty} = \max \left\{ |x|, |y| \right\}.$$
+            Si $\max \left\{ |x|, |y| \right\} = |x|$, entonces implica que $|y| \leq |x| = 0$. Sin embargo, $0 \leq |y| \leq |x| = 0$, lo que conduce a $|x| = 0$ y $|y| = 0$. Por lo tanto, $x = 0$ y $y = 0$, es decir, $(x, y) = (0, 0) = \mathbf{0}$.
+            \item[$\Leftarrow)$] Si $(x, y) = \mathbf{0}$, entonces $x = 0$ y $y = 0$. Así,
+            \begin{align*}
+                \| (x, y) \|_{\infty} & = \| (0, 0) \|_{\infty} \\
+                & = \max \left\{ |0|, |0| \right\} \\
+                & = \max \left\{ 0 \right\} \\
+                & = 0
+            \end{align*}
+            Por lo tanto, $\| (0, 0) \|_{\infty} = 0$.
+        \end{enumerate}
+        \item Se deja como ejercicio al lector.
+        \item Se deja como ejercicio al lector.
+    \end{enumerate}
+    Dado que $\| \quad \|_{\infty}$ satisface las cuatro propiedades de una norma, concluimos que  $\| \quad \|_{\infty}$ es una norma.
+\end{example}
