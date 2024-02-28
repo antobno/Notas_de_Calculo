@@ -455,8 +455,156 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
             \end{align*}
             Por lo tanto, $\| (0, 0) \|_{\infty} = 0$.
         \end{enumerate}
-        \item Se deja como ejercicio al lector.
-        \item Se deja como ejercicio al lector.
     \end{enumerate}
-    Dado que $\| \quad \|_{\infty}$ satisface las cuatro propiedades de una norma, concluimos que  $\| \quad \|_{\infty}$ es una norma.
+    \begin{adjustwidth}{0mm}{-\wholeMargin}
+        \noindent\begin{minipage}[c]{8.2cm}
+            \begin{enumerate}[label=\roman*.,start=3]
+                \item Sea $(x, y) \in \RR[2]$ y $\lambda \in \RR$, entonces
+                \begin{align*}
+                    \| \lambda (x, y) \|_{\infty} & = \| (\lambda x, \lambda y) \|_{\infty} \\
+                    & = \max \left\{ |\lambda x|, |\lambda y| \right\} \\
+                    & = |\lambda| \max \left\{ |x|, |y| \right\} \\
+                    & = |\lambda| \| (x, y) \|_{\infty}
+                \end{align*}
+                Por tanto $\| \lambda (x, y) \|_{\infty} = |\lambda| \| (x, y) \|_{\infty}$.
+            \end{enumerate}
+        \end{minipage}\hfill
+        \begin{minipage}[c]{9.5cm}
+            \colorbox{gray!20}{\parbox[c]{\dimexpr\linewidth-3pt-2\fboxsep-2\fboxrule}{\footnotesize
+            Por el curso de Cálculo I, se establece que
+            $$\max \left\{ |\lambda| |x|, |\lambda| |y| \right\} = |\lambda| \max \left\{ |x|, |y| \right\}.$$
+            En efecto: Si $\lambda = 0$, es evidente que la anterior igualdad se cumple. En caso contrario, es decir, $\lambda \neq 0$, procedemos por casos:\\[-2mm]
+            \begin{enumerate}[label=\roman*)]
+                \item Si $|\lambda| |x| \leq |\lambda| |y|$, entonces $\max \left\{ |\lambda| |x|, |\lambda| |y| \right\} = |\lambda| |y|$ y $|x| \leq |y|$, pues $\lambda \neq 0$ y además, $|\lambda| > 0$. Por lo tanto $|\lambda| \max \left\{ |x|, |y| \right\} = |\lambda| |y|$. Así, se verifica la igualdad.
+                \item Se procede de manera análoga a (i).
+            \end{enumerate}
+        }}
+        \end{minipage}
+    \end{adjustwidth}\newpage
+    \begin{enumerate}[label=\roman*.,start=4]
+        \item Sean $(x, y)$, $(u, v) \in \RR[2]$, entonces
+        \begin{align*}
+            \| (x, y) + (u, v) \|_{\infty} & = \| (x + u, y + v) \|_{\infty} \\
+            & = \max \left\{ |x + u|, |y + v| \right\} \\
+            & \leq \max \left\{ |x| + |u|, |y| + |v| \right\} \\
+            & \leq \max \left\{ |x|, |y| \right\} + \max \left\{ |u|, |v| \right\} \\
+            & = \| (x, y) \|_{\infty} + \| (u, v) \|_{\infty}
+        \end{align*}
+    \end{enumerate}
+    Dado que $\| \quad \|_{\infty}$ satisface las cuatro propiedades de una norma, concluimos que $\| \quad \|_{\infty}$ es una norma.
+\end{example}
+
+\begin{theorem}[Desigualdad de Cauchy-Schwarz]
+    Sea $V$ un $k$-espacio vectorial con producto interno $\langle \, , \rangle$. Sean $\mathbf{x}$, $\mathbf{y} \in V$, entonces se cumple
+    $$| \langle \mathbf{x}, \mathbf{y} \rangle | \leq \| \mathbf{x} \| \| \mathbf{y} \|.$$
+    \demostracion Sean $\mathbf{x}$, $\mathbf{y} \in V$, con $\mathbf{y} \neq \mathbf{0}$ y sea $\lambda \in K$. Consideremos al vector $\mathbf{x} + \lambda \mathbf{y}$, entonces se tiene \vspace{-0.7cm}
+    \begin{adjustwidth}{0mm}{-\wholeMargin}
+        \noindent\begin{minipage}[c]{10cm}
+            \begin{align*}
+                0 \leq \| \mathbf{x} + \lambda \mathbf{y} \|^2 & = \langle \mathbf{x} + \lambda\mathbf{y}, \mathbf{x} + \lambda\mathbf{y} \rangle \\
+                & = \langle \mathbf{x}, \mathbf{x} + \lambda \mathbf{y} \rangle + \langle \lambda \mathbf{y}, \mathbf{x} + \lambda\mathbf{y} \rangle \\
+                & = \langle \mathbf{x}, \mathbf{x} \rangle + \langle \mathbf{x}, \lambda \mathbf{y} \rangle + \langle \lambda \mathbf{y}, \mathbf{x} \rangle + \langle \lambda \mathbf{y}, \lambda \mathbf{y} \rangle \\
+                & = \langle \mathbf{x}, \mathbf{x} \rangle + \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle + \lambda \langle \mathbf{y}, \mathbf{x} \rangle + \lambda \langle \mathbf{y}, \lambda \mathbf{y} \rangle \\
+                & = \langle \mathbf{x}, \mathbf{x} \rangle + \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle + \lambda \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + \lambda\overline{\lambda} \langle \mathbf{y}, \mathbf{y} \rangle \\
+                & = \| \mathbf{x} \|^2 + \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle + \lambda \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + |\lambda|^2 \| \mathbf{y} \|^2
+            \end{align*}
+        \end{minipage}\hfill
+        \begin{minipage}[c]{7.7cm}
+            \colorbox{gray!20}{\parbox[c]{\dimexpr\linewidth-3pt-2\fboxsep-2\fboxrule}{\footnotesize
+            \textbf{Recordatorio:} Sea $V$ un $k$-espacio vectorial. Un producto interno en $V$ es una función $\langle \, , \rangle :V \times V \longrightarrow K$ tal que\\[-2mm]
+            \begin{enumerate}[label=\roman*)]
+                \item $\langle \mathbf{x} + \mathbf{y}, \mathbf{z} \rangle = \langle \mathbf{x}, \mathbf{z} \rangle + \langle \mathbf{y}, \mathbf{z} \rangle$, $\forall \mathbf{x}$, $\mathbf{y}$, $\mathbf{z} \in V$.
+                \item $\langle \lambda \mathbf{x}, \mathbf{y} \rangle = \lambda \langle \mathbf{x}, \mathbf{y} \rangle$, $\forall \lambda \in K$ y $\forall \mathbf{x}$, $\mathbf{y} \in V$.
+                \item $\langle \mathbf{x}, \mathbf{y} \rangle = \overline{\langle \mathbf{y}, \mathbf{x} \rangle}$, $\forall \mathbf{x}$, $\mathbf{y} \in V$.
+                \item Si $\mathbf{x} \in V$, $\mathbf{x} \neq \mathbf{0}$, entonces $\langle \mathbf{x}, \mathbf{x} \rangle > 0$.\\[-2mm]
+            \end{enumerate}
+            Además, el producto interno es homogéneo conjugado respecto al segundo argumento, es decir,
+            $$\langle \mathbf{x}, \lambda \mathbf{y} \rangle = \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle , \forall \lambda \in K.$$
+        }}
+        \end{minipage}
+    \end{adjustwidth}\vspace{-0.3cm}
+    Así,
+    $$0 \leq \| \mathbf{x} + \lambda \mathbf{y} \|^2 = \| \mathbf{x} \|^2 + \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle + \lambda \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + |\lambda|^2 \| \mathbf{y} \|^2.$$
+    Entonces
+    \begin{equation}
+        0 \leq \| \mathbf{x} \|^2 + \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle + \lambda \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + |\lambda|^2 \| \mathbf{y} \|^2, \label{desigualdad-cauchy}
+    \end{equation}
+    lo cual se cumple para toda $\lambda \in K$, en particular para $\displaystyle \lambda = \frac{(-1)\langle \mathbf{x}, \mathbf{y} \rangle}{\| \mathbf{y} \|^2}$. Además, es evidente que $\displaystyle \overline{\lambda} = \frac{(-1)\overline{\langle \mathbf{x}, \mathbf{y} \rangle}}{\| \mathbf{y} \|^2}$. Así que,
+    $$|\lambda|^2 = \frac{(-1)\langle \mathbf{x}, \mathbf{y} \rangle}{\| \mathbf{y} \|^2} \cdot \frac{(-1)\overline{\langle \mathbf{x}, \mathbf{y} \rangle}}{\| \mathbf{y} \|^2} = \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^4}.$$
+    Sustituyendo $\lambda$, $\overline{\lambda}$ y $|\lambda|^2$ en la expresión \eqref{desigualdad-cauchy}, se sigue que
+    \begin{align*}
+        0 & \leq \| \mathbf{x} \|^2 - \frac{\overline{\langle \mathbf{x}, \mathbf{y} \rangle}}{\| \mathbf{y} \|^2} \langle \mathbf{x}, \mathbf{y} \rangle - \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\| \mathbf{y} \|^2} \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^4} \| \mathbf{y} \|^2 \\
+        & = \| \mathbf{x} \|^2 - \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^2} - \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^2} + \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^2} \\
+        & = \| \mathbf{x} \|^2 - \frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^2}
+    \end{align*}
+    Entonces
+    $$\frac{|\langle \mathbf{x}, \mathbf{y} \rangle|^2}{\| \mathbf{y} \|^2} \leq \| \mathbf{x} \|^2,$$
+    de donde se sigue que
+    $$|\langle \mathbf{x}, \mathbf{y} \rangle|^2 \leq \| \mathbf{x} \|^2 \| \mathbf{y} \|^2.$$\newpage\noindent
+    Así, finalmente obtenemos que
+    $$|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \| \mathbf{x} \| \| \mathbf{y} \|.$$
+\end{theorem}
+
+\begin{observation}
+    Si $\mathbf{x}$ e $\mathbf{y}$ son linealmente dependientes, entonces
+    $$|\langle \mathbf{x}, \mathbf{y} \rangle| = \| \mathbf{x} \| \| \mathbf{y} \|.$$
+    Si $\mathbf{x}$ e $\mathbf{y}$ son linealmente independientes, entonces
+    $$|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \| \mathbf{x} \| \| \mathbf{y} \|.$$
+\end{observation}
+
+\begin{example}
+    Sea $V$ un $k$-espacio vectorial con producto interno $\langle \, , \rangle$. Sean $\mathbf{x}$, $\mathbf{y} \in V$, entonces
+    $$\| \mathbf{x} \| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}$$
+    es una norma. \\
+    \demostracion Probemos que $\| \mathbf{x} \|$ cumple las cuatro propiedades de una norma.
+    \begin{enumerate}[label=\roman*.]
+        \item Sea $\mathbf{x} \in V$,
+        $$\| \mathbf{x} \| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} \geq 0.$$
+        Por lo tanto $\| \mathbf{x} \| \geq 0$.
+        \item Por las propiedades del producto interno, se sigue que
+        $$0 = \| \mathbf{x} \| \Longleftrightarrow \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} \Longleftrightarrow \langle \mathbf{x}, \mathbf{x} \rangle \Longleftrightarrow \mathbf{x} = \mathbf{0}.$$
+        Por tanto, $\| \mathbf{x} \| = 0$ si y solo si $\mathbf{x} = \mathbf{0}$.
+        \item Sean $\mathbf{x} \in V$ y $\lambda \in K$,
+        \begin{align*}
+            \| \lambda \mathbf{x} \| & = \sqrt{\langle \lambda \mathbf{x}, \lambda \mathbf{x} \rangle} \\
+            & = \sqrt{\lambda \langle \mathbf{x}, \lambda \mathbf{x} \rangle} \\
+            & = \sqrt{\lambda \overline{\lambda} \langle \mathbf{x}, \mathbf{x} \rangle} \\
+            & = \sqrt{\lambda \overline{\lambda}} \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle} \\
+            & = |\lambda| \| \mathbf{x} \|
+        \end{align*}
+        Por tanto, $\| \lambda \mathbf{x} \| = |\lambda| \| \mathbf{x} \|$.
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in V$, entonces
+        \begin{align*}
+            \| \mathbf{x} + \mathbf{y} \|^2 & = \langle \mathbf{x} + \mathbf{y}, \mathbf{x} + \mathbf{y} \rangle \\
+            & = \langle \mathbf{x}, \mathbf{x} + \mathbf{y} \rangle + \langle \mathbf{y}, \mathbf{x} + \mathbf{y} \rangle \\
+            & = \langle \mathbf{x}, \mathbf{x} \rangle + \langle \mathbf{x}, \mathbf{y} \rangle + \langle \mathbf{y}, \mathbf{x} \rangle + \langle \mathbf{y}, \mathbf{y} \rangle \\
+            & = \| \mathbf{x} \|^2 + \langle \mathbf{x}, \mathbf{y} \rangle + \overline{\langle \mathbf{x}, \mathbf{y} \rangle} + \| \mathbf{y} \|^2 \\
+            & = \| \mathbf{x} \|^2 + 2 \operatorname{Re} \left( \langle \mathbf{x}, \mathbf{y} \rangle \right) + \| \mathbf{y} \|^2 \\
+            & \leq \| \mathbf{x} \|^2 + 2 \left| \langle \mathbf{x}, \mathbf{y} \rangle \right| + \| \mathbf{y} \|^2 \\
+            & \leq \| \mathbf{x} \|^2 + 2 \| \mathbf{x} \| \| \mathbf{y} \| + \| \mathbf{y} \|^2 \\
+            & = \left( \| \mathbf{x} \| + \| \mathbf{y} \| \right)^2
+        \end{align*}
+        Entonces
+        $$\| \mathbf{x} + \mathbf{y} \|^2 \leq \left( \| \mathbf{x} \| + \| \mathbf{y} \| \right)^2,$$
+        por lo que
+        $$\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|.$$
+    \end{enumerate}
+    Dado que $\| \quad \|$ satisface las cuatro propiedades de una norma, concluimos que $\| \quad \|$ es una norma.
+\end{example}
+
+\newpage
+
+\begin{definition}
+    Sea $V$ un $k$-espacio vectorial con un producto interno $\langle \, , \rangle$ La norma en $V$ inducida por el producto interno, se define mediante la regla
+    $$\| \mathbf{x} \| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}.$$
+\end{definition}
+
+\begin{example}
+    En el espacio vectorial $\RR[2]$,
+    $$\| (x, y) \|_2 = \sqrt{x^2 + y^2}$$
+    define una norma. En efecto: Observemos que
+    $$\| (x, y) \| = \sqrt{\langle (x, y), (x, y) \rangle}$$
+    donde $\langle \, , \rangle$ representa el producto interno usual en $\RR[2]$. Sin embargo, notamos que
+    $$\sqrt{\langle (x, y), (x, y) \rangle} = \sqrt{x^2 + y^2} = \| (x, y) \|_2.$$
+    Por lo tanto, concluimos que $\| \quad \|_2$ constituye una norma en $\RR[2]$.
 \end{example}
