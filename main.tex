@@ -140,6 +140,13 @@
 \hypersetup{
 	pdfborder={1 1 0},
 	pdfcreator=LaTeX,
+    pdftitle={Notas de Cálculo III},
+	pdfauthor={Antonio M. Mendoza},
+    pdfsubject={Estas notas se elaboraron con el propósito de servir como recurso para comprender el Cálculo de varias variables.},
+    pdfpagemode=FullScreen,
+    %bookmarks=true,
+    bookmarksopen=false,
+    linktocpage=true,
 	colorlinks=true,
 	linkcolor=black,
 	linktoc=all,
@@ -153,14 +160,14 @@
 	\fancyhf{}
 	\fancyhfoffset[RO]{\marginparsep + \marginparwidth}
     %\fancyhfoffset[LE]{- 0.05\marginparsep}
-    \rhead[{\footnotesize\bfseries\protect\hyperref[toc-contents]{\thepage}\hspace{-1.13\marginparwidth}}]{\rightmark}
-    \lhead[\leftmark]{{\footnotesize\bfseries\protect\hyperref[toc-contents]{\thepage}}}
+    \rhead[{\bfseries\protect\hyperref[toc-contents]{\small\thepage}\hspace{-\marginparwidth -\marginparsep}}]{\small\rightmark}
+    \lhead[\small\leftmark]{{\bfseries\protect\hyperref[toc-contents]{\small\thepage}}}
 }
 \pagestyle{fancy}
 
 \makeatletter
-\def\chaptermark#1{\markboth{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{\chaptertitlename~\thechapter} ~#1}\protect\hyper@linkend}{}}
-\def\sectionmark#1{\markright{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{\thesection} ~#1}\protect\hyper@linkend}}
+\def\chaptermark#1{\markboth{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{\MakeUppercase{\chaptertitlename}~\thechapter} ~#1}\protect\hyper@linkend}{}}
+\def\sectionmark#1{\markright{\protect\hyper@linkstart{link}{\@currentHref}{\textbf{SECCIÓN~\thesection} ~\MakeUppercase{#1}}\protect\hyper@linkend}}
 \makeatother
 
 \fancypagestyle{plain}{ % Estilo para cuando se especifica un estilo de página simple
@@ -175,14 +182,14 @@
 %		Titling
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newlength{\subtitleRubberWidth}\setlength{\subtitleRubberWidth}{2cm}
+\newlength{\subtitleRubberWidth}\setlength{\subtitleRubberWidth}{3cm}
 \newlength{\subtitleDefaultPadding}\setlength{\subtitleDefaultPadding}{2mm}
-\newlength{\subtitleRubberHeight}\setlength{\subtitleRubberHeight}{4.5cm}
+\newlength{\subtitleRubberHeight}\setlength{\subtitleRubberHeight}{7cm}
 \titleformat{\chapter}[block]
 {} % format
 {%
 	\begin{tikzpicture}%
-		\node [font=\fontsize{1cm}{1.2cm}\selectfont\bfseries] (chapterLabel) {\hspace{-.3ex}\chaptername};
+		\node [font=\fontsize{1cm}{1.2cm}\selectfont\bfseries] (chapterLabel) {\hspace{-.3ex}\chaptertitlename};
 		\draw [xshift=-2mm, black, ultra thick] (chapterLabel.south west) -- (chapterLabel.south east);
 	\end{tikzpicture}
 	\begin{tikzpicture}[remember picture, overlay, inner sep=0mm]
@@ -199,7 +206,7 @@
 			text width=\subtitleRubberWidth-2\subtitleDefaultPadding
 		] {
 			%\chapterNumberFont
-            \fontsize{2cm}{2.4cm}\selectfont
+            \fontsize{3cm}{3.6cm}\bfseries\itshape\selectfont
 			\color{White}
 			\thechapter\startcontents
 		};
@@ -419,7 +426,7 @@
 % parte numerada en la tabla de contenido
 \newcommand{\@mypartnumtocformat}[2]{%
 \setlength\fboxsep{0pt}%
-\noindent\colorbox{black!20}{\strut\parbox[c][.8cm]{\ecart}{\color{black!70}\Large\bfseries\centering#1}}\hskip\esp\colorbox{black}{\strut\parbox[c][.8cm]{\linewidth-\ecart-\esp}{\Large\centering#2}}}%
+\noindent\colorbox{black!20}{\strut\parbox[c][.8cm]{\ecart}{\color{black!70}\Large\bfseries\centering#1}}\hskip\esp\colorbox{black}{\strut\parbox[c][.8cm]{\linewidth-\ecart-\esp}{\Large\centering\vphantom{é}\smash{#2}}}}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % parte no numerada en la tabla de contenido
@@ -445,14 +452,24 @@
 \markboth{}{}%
 {\thispagestyle{empty}%
 \begin{tikzpicture}[remember picture,overlay]%
-\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
-\fill[gray!20](0cm,0cm) rectangle (\paperwidth,-\paperheight);
-\node[anchor=north west,inner sep=0pt,xshift=\Gm@lmargin/3,yshift=-3cm] at (current page.north west){\color{black}\scalebox{20}{\bfseries\@Roman\c@part}};
-\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{12cm}{
-\printcontents{l}{0}{\setcounter{tocdepth}{0}}%
-}};
-\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{black}\fontsize{45}{45}\bfseries#2}};
-\end{tikzpicture}};
+    \node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
+        \coordinate (A) at ($(current page.east)+(0,2.5)$);
+        \coordinate (B) at (current page.south west);
+        \draw[black!70,name path=A--B] (A) -- (B);
+        \coordinate (C) at ($(current page.west)+(0,-2.5)$);
+        \coordinate (D) at ($(current page.south)+(2,0)$);
+        \draw[black!90,name path=C--D] (C) -- (D);
+        \path [name intersections={of=A--B and C--D,by=E}];
+        
+        \fill[black!80] (0cm,0cm) rectangle (\paperwidth,-\paperheight);
+        
+        \fill[black!70] ($(current page.east)+(0,2.5)$) -- (current page.south east) -- (current page.south west) -- cycle;
+        \fill[black!90] ($(current page.west)+(0,-2.5)$) -- (current page.south west) -- ($(current page.south)+(2,0)$) -- cycle;
+        \fill[black!60] (current page.south west) -- ($(current page.south)+(2,0)$) -- (E) -- cycle;
+        \node[right,inner sep=0pt] at ($(current page.west)+(2,8)$) {\color{white}\scalebox{20}{\bfseries\@Roman\c@part}};
+        %\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+1cm){\parbox[t][][t]{12cm}{\printcontents{l}{0}{\setcounter{tocdepth}{0}}}};
+        \node[right] at ($(current page.west)+(2,0.75)$) {\parbox[t][][t]{15cm}{\strut\raggedright\color{white}\fontsize{60}{60}\bfseries#2}};
+    \end{tikzpicture}};
 \end{tikzpicture}}%
 \@endpart}
 \def\@spart#1{%
@@ -460,14 +477,29 @@
 \phantomsection
 {\thispagestyle{empty}%
 \begin{tikzpicture}[remember picture,overlay]%
-\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
-\fill[gray!60](0cm,0cm) rectangle (\paperwidth,-\paperheight);
-\node[anchor=north east] at (\paperwidth-1.75cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{45}{45}\bfseries#1}};
-\end{tikzpicture}};
+    \node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%   
+        \coordinate (A) at ($(current page.east)+(0,2.5)$);
+        \coordinate (B) at (current page.south west);
+        \draw[black!70,name path=A--B] (A) -- (B);
+        \coordinate (C) at ($(current page.west)+(0,-2.5)$);
+        \coordinate (D) at ($(current page.south)+(2,0)$);
+        \draw[black!90,name path=C--D] (C) -- (D);
+        \path [name intersections={of=A--B and C--D,by=E}];
+        
+        \fill[black!80] (0cm,0cm) rectangle (\paperwidth,-\paperheight);
+        
+        \fill[black!70] ($(current page.east)+(0,2.5)$) -- (current page.south east) -- (current page.south west) -- cycle;
+        \fill[black!90] ($(current page.west)+(0,-2.5)$) -- (current page.south west) -- ($(current page.south)+(2,0)$) -- cycle;
+        \fill[black!60] (current page.south west) -- ($(current page.south)+(2,0)$) -- (E) -- cycle;
+
+        \node[right] at ($(current page.west)+(2,0.75)$) {\parbox[t][][t]{15cm}{\strut\raggedright\color{white}\fontsize{60}{60}\bfseries#1}};
+    \end{tikzpicture}
+    };
 \end{tikzpicture}}
 \addcontentsline{toc}{part}{\texorpdfstring{%
 \setlength\fboxsep{0pt}%
-\noindent\protect\colorbox{gray!40}{\strut\protect\parbox[c][.7cm]{\linewidth}{\Large\protect\centering #1\quad\mbox{}}}}{#1}}%
+% Apendice
+\noindent\protect\colorbox{black!70}{\strut\protect\parbox[c][.8cm]{\linewidth}{\Large\protect\centering\vphantom{é}\smash{#1} \quad\mbox{}}}}{#1}}%
 \@endpart}
 \def\@endpart{\vfil\newpage
 \if@twoside
@@ -569,7 +601,7 @@
 \newtheorem{proposition}{Proposición}[section]
 \newtheorem{corollary}{Corolario}[section]
 \newtheorem{definition}{Definición}[section]
-\newtheorem*{example}{Ejemplo}
+\newtheorem{example}{Ejemplo}[section]
 \newtheorem*{examples}{Ejemplos}
 \newtheorem*{observation}{Observación}%[section]
 \newtheorem*{remark}{Nota}

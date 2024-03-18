@@ -393,7 +393,7 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
     En el ejemplo anterior, aunque el espacio vectorial era $\RR$, es importante distinguir entre los vectores y los números reales, pues son cosas muy distintas. Por tanto, los vectores los representaremos utilizando letras en negrita para distinguirlos de los números reales.
 \end{observation}
 
-\begin{definition}
+\begin{example}
     En $\RR[2]$, sea $\| (x, y) \|_1 = |x| + |y|$, probemos entonces que $\| \quad \|_1$ cumple las cuatro propiedades establecidas en la definición previa.
     \begin{enumerate}[label=\roman*.]
         \item Sea $(x, y) \in \RR[2]$, entonces
@@ -434,7 +434,7 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
         Por tanto, $\| (x, y) + (u, v) \|_1 \leq \| (x, y) \|_1 + \| (u, v) \|_1$.
     \end{enumerate}
     Dado que $\| \quad \|_1$ satisface las cuatro propiedades de una norma, concluimos que  $\| \quad \|_1$ es una norma.
-\end{definition}
+\end{example}
 
 \begin{example}
     En $\RR[2]$, sea $\| (x, y) \|_{\infty} = \max \left\{ |x|, |y| \right\}$, probemos entonces que $\| \quad \|_{\infty}$ cumple las cuatro propiedades establecidas en la definición previa.
@@ -518,8 +518,11 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
                 \item $\langle \mathbf{x}, \mathbf{y} \rangle = \overline{\langle \mathbf{y}, \mathbf{x} \rangle}$, $\forall \mathbf{x}$, $\mathbf{y} \in V$.
                 \item Si $\mathbf{x} \in V$, $\mathbf{x} \neq \mathbf{0}$, entonces $\langle \mathbf{x}, \mathbf{x} \rangle > 0$.\\[-2mm]
             \end{enumerate}
-            Además, el producto interno es homogéneo conjugado respecto al segundo argumento, es decir,
-            $$\langle \mathbf{x}, \lambda \mathbf{y} \rangle = \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle , \forall \lambda \in K.$$
+            Además, recordemos que el producto interno es aditivo y homogéneo conjugado respecto al segundo argumento, es decir,\\[-2mm]
+            \begin{itemize}
+                \item $\langle \mathbf{x}, \mathbf{y} + \mathbf{z} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle + \langle \mathbf{x}, \mathbf{z} \rangle$,
+                \item $\langle \mathbf{x}, \lambda \mathbf{y} \rangle = \overline{\lambda} \langle \mathbf{x}, \mathbf{y} \rangle$.
+            \end{itemize}
         }}
         \end{minipage}
     \end{adjustwidth}\vspace{-0.3cm}
@@ -595,7 +598,7 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
 \newpage
 
 \begin{definition}
-    Sea $V$ un $k$-espacio vectorial con un producto interno $\langle \, , \rangle$ La norma en $V$ inducida por el producto interno, se define mediante la regla
+    Sea $V$ un $k$-espacio vectorial con un producto interno $\langle \, , \rangle$. La norma en $V$ inducida por el producto interno, se define mediante la regla
     $$\| \mathbf{x} \| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}.$$
 \end{definition}
 
@@ -608,3 +611,333 @@ Además de la norma euclidiana, existen otras normas importantes en el cálculo 
     $$\sqrt{\langle (x, y), (x, y) \rangle} = \sqrt{x^2 + y^2} = \| (x, y) \|_2.$$
     Por lo tanto, concluimos que $\| \quad \|_2$ constituye una norma en $\RR[2]$.
 \end{example}
+
+\section{Definición y ejemplos de métricas}
+
+\begin{definition}\label{def:metrica}
+    Sea $X$ un conjunto. Una función $d: X \times X \longrightarrow \RR$ se llama distancia o métrica en $X$ si cumple las siguientes propiedades:
+    \begin{enumerate}[label=\roman*.]
+        \item $d(\mathbf{x}, \mathbf{y}) \geq 0$, $\forall \mathbf{x}$, $\mathbf{y} \in X$,
+        \item $d(\mathbf{x}, \mathbf{y}) = 0 \Longleftrightarrow \mathbf{x} = \mathbf{y}$,
+        \item $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$, $\forall \mathbf{x}$, $\mathbf{y} \in X$,
+        \item $d(\mathbf{x}, \mathbf{y}) \leq d(\mathbf{x}, \mathbf{z}) + d(\mathbf{z}, \mathbf{y})$, $\forall \mathbf{x}$, $\mathbf{y}$, $\mathbf{z} \in X$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Sea $V$ un $k$-espacio vectorial con una norma $\| \quad \|$. Entonces la función $d:V \times V \longrightarrow \RR$ definida mediante la siguiente regla es una métrica en $V$:
+    $$d(\mathbf{x}, \mathbf{y}) = \| \mathbf{x} - \mathbf{y} \|.$$
+    \demostracion Probemos pues, que la anterior expresión cumple los cuatro axiomas de una métrica.
+    \begin{enumerate}[label=\roman*.]
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in V$
+        \begin{align*}
+            d(\mathbf{x}, \mathbf{y}) & = \| \mathbf{x} - \mathbf{y} \| \\
+            & \geq 0
+        \end{align*}
+         Por lo tanto, $d(\mathbf{x}, \mathbf{y}) \geq 0$.
+         \item Sean $\mathbf{x}$, $\mathbf{y} \in V$
+         $$d(\mathbf{x}, \mathbf{y}) = 0 \Longleftrightarrow \| \mathbf{x} - \mathbf{y} \| = 0 \Longleftrightarrow \mathbf{x} - \mathbf{y} = \mathbf{0} \Longleftrightarrow \mathbf{x} = \mathbf{y}.$$
+         \item Sean $\mathbf{x}$, $\mathbf{y} \in V$
+         \begin{align*}
+             d(\mathbf{x}, \mathbf{y}) & = \| \mathbf{x} - \mathbf{y} \| \\
+             & = \| - (\mathbf{y} - \mathbf{x}) \| \\
+             & = \| (-1) (\mathbf{y} - \mathbf{x}) \| \\
+             & = |-1| \| (\mathbf{y} - \mathbf{x}) \| \\
+             & = \| \mathbf{y} - \mathbf{x} \| \\
+             & = d(\mathbf{y}, \mathbf{x})
+         \end{align*}
+         Por tanto, $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$.\newpage
+         \item Sean $\mathbf{x}$, $\mathbf{y}$, $\mathbf{z} \in V$
+         \begin{align*}
+             d(\mathbf{x}, \mathbf{y}) & = \| \mathbf{x} - \mathbf{y} \| \\
+             & = \| \mathbf{x} + \mathbf{z} - \mathbf{z} - \mathbf{y} \| \\
+             & = \| \mathbf{x} - \mathbf{z} - \mathbf{z} + \mathbf{y} \| \\
+             & \leq \| \mathbf{x} - \mathbf{z} \| + \| \mathbf{z} - \mathbf{y} \| \\
+             & = d(\mathbf{x}, \mathbf{z}) + d(\mathbf{z}, \mathbf{y})
+         \end{align*}
+         Por tanto, $d(\mathbf{x}, \mathbf{y}) \leq d(\mathbf{x}, \mathbf{z}) + d(\mathbf{z}, \mathbf{y})$.
+    \end{enumerate}
+    Dado que $d$ satisface los cuatro axiomas de una métrica, concluimos que  $d$ es una métrica.
+\end{example}
+
+\begin{definition}
+    Sea $V$ un $k$-espacio vectorial con una norma $\| \quad \|$. La distancia o métrica inducida por la norma $\| \quad \|$ se define mediante la siguiente fórmula:
+    $$d(\mathbf{x}, \mathbf{y}) = \| \mathbf{x} - \mathbf{y} \|.$$
+\end{definition}
+
+\begin{example}
+    En el conjunto de los números reales, $\mathbb{R}$, la expresión
+    $$d(\mathbf{x}, \mathbf{y}) = \| \mathbf{x} - \mathbf{y} \| = |x - y|$$
+    constituye una métrica.
+\end{example}
+
+\begin{example}
+    En el conjunto $\RR[2]$, la expresión
+    $$d_2\big( (x, y), (u, v) \big) = \sqrt{(x - u)^2 + (y - v)^2}$$
+    constituye una métrica. En efecto: Sean $(x, y)$, $(u, v) \in \RR[2]$
+    \begin{align*}
+        d_2\big( (x, y), (u, v) \big) & = \| (x, y) - (u, v) \| \\
+        & = \| (x - u, y - v) \|_2 \\
+        & = \sqrt{(x - u)^2 + (y - v)^2}
+    \end{align*}
+    Por tanto, la distancia o métrica $d_2$ es inducida por la norma $\| \quad \|_2$.
+\end{example}
+
+\begin{example}
+    En el conjunto $\RR[2]$, la expresión
+    $$d_1\big( (x, y), (u, v) \big) = |x - u| + |y - v|$$
+    constituye una métrica. En efecto: Sean $(x, y)$, $(u, v) \in \RR[2]$
+    \begin{align*}
+        d_1\big( (x, y), (u, v) \big) & = \| (x, y) - (u, v) \| \\
+        & = \| (x - u, y - v) \|_1 \\
+        & = |x - u| + |y - v|
+    \end{align*}
+    Por tanto, la distancia o métrica $d_1$ es inducida por la norma $\| \quad \|_1$.
+\end{example}
+
+\begin{example}
+    En el conjunto $\RR[2]$, la expresión
+    $$d_{\infty}\big( (x, y), (u, v) \big) = \max \left\{ |x - u|, |y - v| \right\}$$
+    constituye una métrica. En efecto: Sean $(x, y)$, $(u, v) \in \RR[2]$
+    \begin{align*}
+        d_{\infty}\big( (x, y), (u, v) \big) & = \| (x, y) - (u, v) \| \\
+        & = \| (x - u, y - v) \|_{\infty} \\
+        & = \max \left\{ |x - u|, |y - v| \right\}
+    \end{align*}
+    Por tanto, la distancia o métrica $d_{\infty}$ es inducida por la norma $\| \quad \|_{\infty}$.
+\end{example}
+
+\newpage
+
+\begin{example}
+    Probemos que en el conjunto $X$, la expresión
+    $$d(\mathbf{x}, \mathbf{y}) = \begin{cases}
+        0 & \text{si } \mathbf{x} = \mathbf{y} \\
+        1 & \text{si } \mathbf{x} \neq \mathbf{y}
+    \end{cases}$$
+    constituye una métrica en $X$. \\
+    \demostracion Probemos que dicha expresión cumple las cuatro propiedades de la definición \ref{def:metrica}.
+    \begin{enumerate}[label=\roman*.]
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in X$, entonces
+        $$d(\mathbf{x}, \mathbf{y}) = 0 \quad \text{si } \mathbf{x} = \mathbf{y},$$
+        o
+        $$d(\mathbf{x}, \mathbf{y}) = 1 \quad \text{si } \mathbf{x} \neq \mathbf{y}.$$
+        Así, en cualquier caso, $d(\mathbf{x}, \mathbf{y}) \geq 0$.
+        \item Por definición de la métrica, $d(\mathbf{x}, \mathbf{y}) = 0$ si y solo si $\mathbf{x} = \mathbf{y}$.
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in X$. Procedamos por casos:
+        \begin{enumerate}
+            \item Si $\mathbf{x} = \mathbf{y}$, entonces $d(\mathbf{x}, \mathbf{y}) = 0$, pero $\mathbf{x} = \mathbf{y}$, entonces $\mathbf{y} = \mathbf{x}$. Por tanto, $d(\mathbf{y}, \mathbf{x}) = 0$, por lo que $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$.
+            \item Si $\mathbf{x} \neq \mathbf{y}$, entonces $d(\mathbf{x}, \mathbf{y}) = 1$, pero $\mathbf{x} \neq \mathbf{y}$, entonces $\mathbf{y} \neq \mathbf{x}$. Por tanto, $d(\mathbf{y}, \mathbf{x}) = 1$, por lo que $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$.
+        \end{enumerate}
+        Así, en cualquiera de los casos, $d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})$.
+        \item Sean $\mathbf{x}$, $\mathbf{y} \in X$. Procedamos por casos:
+        \begin{enumerate}
+            \item Si $\mathbf{x} = \mathbf{y}$, entonces $d(\mathbf{x}, \mathbf{y}) = 0$, por lo que
+            \begin{align*}
+                0 & = d(\mathbf{x}, \mathbf{y}) \\
+                & \leq d(\mathbf{x}, \mathbf{z}) + d(\mathbf{z}, \mathbf{y})
+            \end{align*}
+            \item Si $\mathbf{x} \neq \mathbf{y}$, entonces $d(\mathbf{x}, \mathbf{y}) = 1$, por lo que
+            \begin{align*}
+                1 & = d(\mathbf{x}, \mathbf{y}) \\
+                & \leq d(\mathbf{x}, \mathbf{z}) + d(\mathbf{z}, \mathbf{y})
+            \end{align*}
+            Afirmamos que $d(\mathbf{x}, \mathbf{z}) = 0$ y $d(\mathbf{z}, \mathbf{y}) = 0$ no ocurre, pues si $d(\mathbf{x}, \mathbf{z}) = 0$ y $d(\mathbf{z}, \mathbf{y}) = 0$, entonces $\mathbf{x} = \mathbf{z}$ y $\mathbf{z} = \mathbf{y}$. Por lo tanto, $\mathbf{x} = \mathbf{y}$ lo cual no puede ser.
+        \end{enumerate}
+    \end{enumerate}
+\end{example}
+
+\section{Topología de $\RR[n]$}
+
+La Topología es un área de las matemáticas muy importante que se interesa por conceptos como proximidad, continuidad, conectividad (o conexidad), compacidad, y muchos otros más. Para abordarlos de manera precisa, primero es necesario definir un cierto tipo de conjuntos (que en Topología se les conoce como los conjuntos abiertos).
+
+Cuando en un conjunto se cuenta con una forma de medir la distancia entre cualesquiera dos de sus elementos (como es el caso de $\RR[n]$), existe una manera de decir quiénes son los conjuntos abiertos y con base en estos desarrollar los conceptos que mencionamos al principio de esta sección.
+
+\newpage
+
+\subsection{Clasificación de puntos}
+
+La clasificación de puntos se refiere a la categorización de puntos dentro y fuera de conjuntos en un espacio métrico. Las bolas, o vecindades, son conjuntos abiertos definidos alrededor de un punto dado. Estas bolas juegan un papel crucial en la clasificación de puntos, ya que nos permiten definir conceptos como puntos interiores, exteriores, fronterizos, de acumulación y de adherencia, que son fundamentales para comprender la topología y la convergencia en Cálculo III. Las bolas se definen generalmente como conjuntos de puntos que están dentro de una cierta distancia (radio) de un punto central.
+
+En lugar de clasificar un punto en este momento, examinaremos algunos ejemplos de conjuntos de bolas para derivar la idea a partir de ellos. En $\RR[n]$, definimos el concepto de vecindad o bola apoyándonos en alguna de las formas que disponemos para medir la distancia entre elementos de $\RR[n]$, que en nuestro caso será la distancia euclideana (en los problemas mostraremos que, en términos topológicos, da lo mismo cuál de estas distancias elijamos o, en última instancia, cuál norma elijamos).
+
+Algunos objetos geométricos son muy sencillos de describir en términos del concepto de distancia, y sin duda el más sencillo de ellos es el formado por los puntos que se encuentran a una distancia constante $r > 0$ de un punto fijo $\mathbf{x} \in \RR[n]$, que como todos sabemos, en $\RR[2]$ es una circunferencia de radio $r$, y en $\RR[3]$ es una esfera, también de radio $r$. Sin embargo, para nuestros objetivos, el conjunto que resultará de mayor interés no es tanto el formado por los puntos que se encuentran a una distancia $r$ de $\mathbf{x} \in \RR[n]$, sino los que se encuentran a una distancia menor a $r$. En $\RR[2]$ este conjunto consistirá de los puntos que se encuentran “dentro” de la circunferencia de radio $r$, y en $\RR[3]$ consistirá de los que están “dentro” de la esfera, también de radio $r$.
+\begin{figure}[h!]
+    \centering
+    \subfloat[]{
+    \begin{tikzpicture}
+        \draw[thick,-latex] (-2.5,0) -- (2.5,0) node[right] {$x$};
+        \draw[thick,-latex] (0,-2.5) -- (0,2.5) node[above] {$y$};
+        \filldraw[gray,opacity=0.25] (0,0) circle (2cm);
+        \draw[dashed] (0,0) circle (2cm);
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[]{
+    \includegraphics[width=0.46\textwidth]{Images/Capitulo1/Esfera.pdf}
+    }
+    \caption{Las bolas de radio $r$ con centro en el origen en $\RR[2]$ y en $\RR[3]$ respectivamente}
+\end{figure}
+
+\begin{definition}
+    Con base en lo anterior, dado $\mathbf{x}_0 \in \RR[n]$ y $r > 0$, definimos bola abierta de radio $r > 0$ con centro en $\mathbf{x}_0 \in \RR[n]$ como
+    $$B(\mathbf{x}_0, r) = \left\{ \mathbf{x} \in \RR[n] \mid d(\mathbf{x}, \mathbf{x}_0) < r \right\}$$
+    y definimos la bola cerrada de radio $r > 0$ con centro en $\mathbf{x}_0 \in \RR[n]$ como
+    $$\overline{B(\mathbf{x}_0, r)} = \left\{ \mathbf{x} \in \RR[n] \mid d(\mathbf{x}, \mathbf{x}_0) < r \right\}$$
+\end{definition}
+
+\newpage
+
+En otras palabras, la esfera es la cáscara y la bola es la región que se encuentra dentro de la cáscara. La bola abierta consiste en la región situada dentro de la cáscara sin incluir la cáscara en sí. La bola cerrada está formada por la región contenida dentro de la cáscara y por la cáscara misma.
+
+Así, dado un conjunto $A \subset \RR[n]$, podemos clasificar a todos los puntos de $\RR[n]$ en términos de su “localización” con respecto a dicho conjunto, en donde por localización nos referimos a algo más profundo que el simple concepto de pertenencia. A fin de precisar esta idea de localización con respecto a un conjunto $A$, recurriremos a la figura \ref{fig:clasificacion_de_puntos} en $\RR$.
+\begin{figure}[h!]
+    \centering
+    \subfloat[Punto interior]{
+    \begin{tikzpicture}
+        \draw (0,0) -- (5,0);
+        \filldraw (2.5,0) circle (2pt);
+        \filldraw (4,0) circle (2pt);
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[Punto de adherencia]{
+    \begin{tikzpicture}
+        \draw (0,0) -- (5,0);
+        \filldraw (5,0) circle (2pt);
+    \end{tikzpicture}
+    } \\
+    \subfloat[Punto frontera]{
+    \begin{tikzpicture}
+        \draw (0,0) -- (5,0);
+        \filldraw (0,0) circle (2pt);
+        \filldraw (5,0) circle (2pt);
+    \end{tikzpicture}
+    } \hfill
+    \subfloat[Punto de acumulación]{
+    \begin{tikzpicture}
+        \draw (0,0) -- (4,0);
+        \filldraw (5,0) circle (2pt);
+    \end{tikzpicture}
+    }
+    \caption{Las diferentes localizaciones que puede tener un punto de $\RR[n]$ con respecto de un conjunto $A$}
+    \label{fig:clasificacion_de_puntos}
+\end{figure}
+\begin{enumerate}[label=\alph*)]
+    \item Un punto interior en un conjunto es aquel que tiene un entorno (una vecindad) completamente contenido dentro del conjunto. Es decir, si tomas un punto dentro del conjunto, puedes encontrar una pequeña esfera alrededor de ese punto que también está completamente dentro del conjunto.
+    \item Un punto de adherencia de un conjunto es aquel alrededor del cual se pueden encontrar puntos del conjunto, dentro de cualquier entorno, incluido el propio punto. En otras palabras, un punto de adherencia puede ser tanto un punto del conjunto como un punto límite del conjunto.
+    \item Un punto frontera de un conjunto es aquel que no es ni un punto interior ni un punto exterior del conjunto. Esto significa que cualquier entorno alrededor de un punto frontera contendrá puntos tanto dentro como fuera del conjunto.
+    \item Un punto de acumulación de un conjunto es aquel alrededor del cual se pueden encontrar infinitos puntos del conjunto, dentro de cualquier entorno. Es decir, aunque el punto de acumulación en sí mismo no necesariamente pertenece al conjunto, existen puntos del conjunto arbitrariamente cercanos a él.
+\end{enumerate}
+
+\begin{observation}
+    Se puede generalizar lo expuesto anteriormente para aplicarlo a un conjunto arbitrario $X$, en lugar de restringirse únicamente al espacio $\mathbb{R}^n$.
+\end{observation}
+
+\begin{example}
+    Represente la bola siguiente utilizando la métrica $d_1$:
+    $$B_{d_1} \big( (0, 0), 1 \big)$$
+    \solucion Para trazar la bola anterior en el gráfico, es necesario observar que
+    \begin{align*}
+        (x, y) \in B_{d_1} \big( (0, 0), 1 \big) & \Longleftrightarrow d_1 \big( (0, 0), 1 \big) < 1 \\
+        & \Longleftrightarrow \| (x, y) - (0, 0) \|_1 < 1 \\
+        & \Longleftrightarrow \| (x, y) \|_1 < 1 \\
+        & \Longleftrightarrow |x| + |y| < 1
+    \end{align*}
+    Por lo tanto, la representación gráfica de esta bola está dada por la figura \ref{fig:bola1}.
+    \sideFigure[\label{fig:bola1}]{
+    \begin{tikzpicture}
+        \draw[-stealth] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+        \draw[-stealth] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+        \filldraw[gray,opacity=0.2] (0,1) -- (-1,0) -- (0,-1) -- (1,0) -- cycle;
+        \draw[dash pattern=on 3pt off 3pt] (0,1) -- (-1,0) -- (0,-1) -- (1,0) -- cycle;
+        \draw[latex-] (0.55,0.55) -- (1,1) node[above,xshift=0.7cm] {$x + y = 1$};
+        \draw[latex-] (-0.55,0.55) -- (-1,1) node[above,xshift=-0.7cm] {$- x + y = 1$};
+        \draw[latex-] (-0.55,-0.55) -- (-1,-1) node[below,xshift=-0.7cm] {$- x - y = 1$};
+        \draw[latex-] (0.55,-0.55) -- (1,-1) node[below,xshift=0.7cm] {$x - y = 1$};
+    \end{tikzpicture}
+    }
+\end{example}
+
+\begin{example}
+    Represente la bola siguiente utilizando la métrica $d_{\infty}$:
+    $$B_{d_{\infty}} \big( (0, 0), 1 \big)$$\newpage\sideFigure[\label{fig:bola2}]{
+    \begin{tikzpicture}
+        \draw[-stealth] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+        \draw[-stealth] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+        \filldraw[gray,opacity=0.2] (-1,-1) rectangle (1,1);
+        \draw[dash pattern=on 3pt off 3pt] (-1,-1) rectangle (1,1);
+        \draw[latex-] (0.5,1.05) -- (0.75,1.75) node[right] {$y = 1$};
+        \draw[latex-] (-0.5,-1.05) -- (-0.75,-1.75) node[left] {$y = - 1$};
+        \draw[latex-] (1.05,-0.5) -- (1.75,-0.75) node[below] {$x = 1$};
+        \draw[latex-] (-1.05,0.5) -- (-1.75,0.75) node[above] {$x = - 1$};
+    \end{tikzpicture}
+    }
+    \solucion Para trazar la bola anterior en el gráfico, es necesario observar que
+    \begin{align*}
+        (x, y) \in B_{d_{\infty}} \big( (0, 0), 1 \big) & \Longleftrightarrow d_{\infty} \big( (0, 0), 1 \big) < 1 \\
+        & \Longleftrightarrow \| (x, y) - (0, 0) \|_{\infty} < 1 \\
+        & \Longleftrightarrow \| (x, y) \|_{\infty} < 1 \\
+        & \Longleftrightarrow \max \left\{ |x| + |y| \right\} < 1
+    \end{align*}
+    Es difícil graficar la anterior expresión, así que procedamos por casos
+    \begin{enumerate}[label=\roman*)]
+        \item Si $\max \left\{ |x|, |y| \right\} = |y|$, entonces $|x| \leq |y| = 1$; por consiguiente, $y = \pm 1$. Si $y = 1$, entonces $|x| \leq 1$, lo que implica que $-1 \leq x \leq 1$. De manera similar, si $y = -1$, entonces $|x| \leq -1$, lo que implica que $-1 \leq x \leq 1$.
+        \item Si $\max \left\{ |x|, |y| \right\} = |x|$, entonces $|y| \leq |x| = 1$; por consiguiente, $x = \pm 1$. Si $x = 1$, entonces $|y| \leq 1$, lo que implica que $-1 \leq y \leq 1$. De manera similar, si $x = -1$, entonces $|y| \leq -1$, lo que implica que $-1 \leq y \leq 1$.
+    \end{enumerate}
+    Por lo tanto, la representación gráfica de esta bola está dada por la figura \ref{fig:bola2}.
+\end{example}
+
+\begin{example}
+    Represente la bola siguiente utilizando la métrica $d_{2}$:\sideFigure[\label{fig:bola3}]{
+    \begin{tikzpicture}
+        \draw[-stealth] (-2.5,0) -- (2.5,0) node[below left] {$x$};
+        \draw[-stealth] (0,-2.5) -- (0,2.5) node[below left] {$y$};
+        \filldraw[gray,opacity=0.2] (0,0) circle (1cm);
+        \draw[dash pattern=on 3pt off 3pt] (0,0) circle (1cm);
+        \draw[latex-] (0.6,0.9) -- (1.3,1.5) node[above] {$x^2 + y^2 = 1$};
+    \end{tikzpicture}
+    }
+    $$B_{d_{2}} \big( (0, 0), 1 \big)$$
+    \solucion Para trazar la bola anterior en el gráfico, es necesario observar que
+    \begin{align*}
+        (x, y) \in B_{d_2} \big( (0, 0), 1 \big) & \Longleftrightarrow d_2 \big( (0, 0), 1 \big) < 1 \\
+        & \Longleftrightarrow \| (x, y) - (0, 0) \|_2 < 1 \\
+        & \Longleftrightarrow \| (x, y) \|_2 < 1 \\
+        & \Longleftrightarrow \sqrt{x^2 + y^2} < 1
+    \end{align*}
+    Por lo tanto, la representación gráfica de esta bola está dada por la figura \ref{fig:bola3}.
+\end{example}
+
+\subsection{Conjuntos abiertos y cerrados}
+
+\begin{observation}
+    Diremos que un conjunto es abierto si para toda $\mathbf{y} \in B(\mathbf{x}, r)$, existe $r_0 = \dfrac{r - d(\mathbf{y}, \mathbf{x})}{2} > 0$ tal que $B(\mathbf{y}, r_0) \subset B(\mathbf{x}, r)$. Geométricamente,
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[dash pattern=on 3pt off 3pt] (0,0) circle (2.5cm);
+            \filldraw[gray,opacity=0.2] (0.7,1.3) circle (0.9cm);
+            \draw[loosely dotted] (0.7,1.3) circle (0.9cm);
+            \draw (0,0) -- (2.5,0) node[midway,above] {$r$};
+            \draw (0.7,1.3) -- (1.6,1.3) node[midway,above] {$r_0$};
+            \filldraw (0,0) circle (2pt) node[below] {$\mathbf{x}$};
+            \filldraw (0.7,1.3) circle (2pt) node[below] {$\mathbf{y}$};
+            \draw[-stealth,thick] (-3.5,-4) -- (-3.5,3.5);
+            \draw[-stealth,thick] (-4.5,-3) -- (3.5,-3);
+        \end{tikzpicture}
+    \end{center}
+\end{observation}
+
+\newpage
+
+\begin{proposition}~
+    \begin{enumerate}[label=\roman*.]
+        \item La intersección de dos bolas es un conjunto abierto.
+        \item El conjunto vacío es un conjunto abierto.
+    \end{enumerate}
+    \demostracion
+    \begin{enumerate}[label=\roman*.]
+        \item Sea $\mathbf{z} \in B(\mathbf{x}, r_1) \cap B(\mathbf{y}, r_2)$, entonces $\mathbf{z} \in B(\mathbf{x}, r_1)$ y $\mathbf{z} \in B(\mathbf{y}, r_2)$. Así, existe $r_0 > 0$ y $r_0^{*} > 0$ tal que $B(\mathbf{z}, r_0) \subseteq B(\mathbf{x}, r_1)$ y $B(\mathbf{z}, r_0^{*}) \subseteq B(\mathbf{x}, r_1)$. Sea $r_0^{**} = \min \left\{ r_0, r_0^{*} \right\}$, entonces
+        $$B(\mathbf{z}, r_0^{**}) \leq B(\mathbf{z}, r_0) \quad \text{ y } \quad B(\mathbf{z}, r_0^{**}) \leq B(\mathbf{z}, r_0^{*}).$$
+        Por tanto, $B(\mathbf{z}, r_0^{**}) \subseteq B(\mathbf{x}, r_1) \cap B(\mathbf{y}, r_2)$, por lo que $B(\mathbf{x}, r_1) \cap B(\mathbf{y}, r_2)$ es un conjunto abierto.
+        \item Supongamos que el conjunto vacío $\emptyset$ no es abierto. Entonces, existe un $\mathbf{x} \in \emptyset$ tal que para todo $r > 0$, $B(\mathbf{x}, r) \nsubseteq \emptyset$. En particular, esto implica que existe un $\mathbf{x} \in \emptyset$, lo cual es una contradicción. Por lo tanto, $\emptyset$ es un conjunto abierto.
+    \end{enumerate}
+\end{proposition}
